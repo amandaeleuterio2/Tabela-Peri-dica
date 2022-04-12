@@ -219,15 +219,7 @@ li:before{
 			z-index:2;
 		}
 		
-		
-		/* FOOTER */
-	
-		footer{
-			font-size:1em;
-			width:100%;
-			margin:2em 0;
-		}
-		
+
 		ul{
 			justify-content:center;
 		}
