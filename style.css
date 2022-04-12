@@ -246,3 +246,12 @@ li:before{
 .linha{
     color:white;
 }
+
+.cabeçalho{
+	font-size: small;
+	color: red !important;
+}
+
+nav{
+	text-decoration-color: red;;
+}
