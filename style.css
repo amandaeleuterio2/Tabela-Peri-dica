@@ -20,7 +20,7 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
-	--cabecalho:rgb(230,0,0);
+	--cabecalho:rgb(300,0,0);
 }
 
 body{
@@ -167,11 +167,18 @@ li:before{
 }
 
 .cabecalho:before{
-	content:' ';
 	border: none;
 	border-radius: none;	
 	color: yellow;
 }
+
+.cabecalho:hover{
+	transition:.2s;
+	transform:scale(1.5);
+	cursor:pointer;
+	z-index:2;
+}
+
 
 @media only screen and (min-width:92.5em){
 	@supports (display:grid){
@@ -236,8 +243,6 @@ li:before{
 		li{
 			flex-basis:auto;
 			margin-bottom:0;
-			list-style-type: none;
-
 		}
 		
 		li + li{
