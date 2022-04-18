@@ -20,6 +20,7 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
+	--cabecalho:rgb(230,0,0);
 }
 
 body{
@@ -30,7 +31,6 @@ body{
 	background:var(--bg-preto);	
 }
 
-	
 /* FOREGROUND COLOR VARIABLES */
 .nao-metal{
 	color:var(--nao-metal);
@@ -72,7 +72,10 @@ body{
 	color:var(--actinidio);
 }
 
-	
+.cabecalho{
+	color:var(--cabecalho);
+}
+
 /* TYPOGRAPHY STYLES */
 h1{
 	margin:.5em 0;
@@ -139,10 +142,10 @@ footer{
 }
 
 ul{
-	display:flex;
-	flex-wrap:wrap;
-  position:sticky;
-  top:1em;
+	display: flex;
+	flex-wrap: wrap;
+  	position: sticky;
+  	top:1em;
 }
 
 li{
@@ -163,6 +166,12 @@ li:before{
 	top:.25em;
 }
 
+.cabecalho:before{
+	content:' ';
+	border: none;
+	border-radius: none;	
+	color: yellow;
+}
 
 @media only screen and (min-width:92.5em){
 	@supports (display:grid){
@@ -221,23 +230,24 @@ li:before{
 		
 
 		ul{
-			justify-content:center;
+			justify-content: center;
 		}
 		
 		li{
 			flex-basis:auto;
-			margin-bottom:0;	
+			margin-bottom:0;
+			list-style-type: none;
+
 		}
 		
 		li + li{
-			margin-left:2em;	
+			margin-left:2em;
 		}	
 	}
 }
 
 @media only screen and (min-width:102.5em){
 	/* GLOBAL STYLES */
-		
 		body{
 			font-size:.75em;	
 		}	
@@ -247,11 +257,3 @@ li:before{
     color:white;
 }
 
-.cabeçalho{
-	font-size: small;
-	color: red !important;
-}
-
-nav{
-	text-decoration-color: red;;
-}
