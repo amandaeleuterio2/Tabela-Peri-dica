@@ -20,7 +20,6 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
-	--cabecalho:rgb(300,0,0);
 }
 
 body{
@@ -72,10 +71,6 @@ body{
 	color:var(--actinidio);
 }
 
-.cabecalho{
-	color:var(--cabecalho);
-}
-
 /* TYPOGRAPHY STYLES */
 h1{
 	margin:.5em 0;
@@ -125,13 +120,24 @@ section{
 	justify-content:center;
 }
 
+.index{
+	height:7em;
+	background:var(--bg-preto);	
+	border:.125rem solid;
+	border-radius:.25rem;	
+	margin-bottom:.4em;
+	position: relative;
+	display:flex;
+	flex-direction:column;
+	justify-content: start;
+}
+
 span{
 	font-size:.75em;
 	position:absolute;
 	top:.3em;
-	left:.5em;	
+	left:.5em;
 }
-
 
 /* FOOTER */
 footer{
@@ -169,7 +175,6 @@ li:before{
 .cabecalho:before{
 	border: none;
 	border-radius: none;	
-	color: yellow;
 }
 
 .cabecalho:hover{
@@ -177,6 +182,7 @@ li:before{
 	transform:scale(1.5);
 	cursor:pointer;
 	z-index:2;
+	color-adjust:inherit;
 }
 
 
@@ -235,7 +241,6 @@ li:before{
 			z-index:2;
 		}
 		
-
 		ul{
 			justify-content: center;
 		}
@@ -247,7 +252,6 @@ li:before{
 		
 		li + li{
 			margin-left:2em;
-
 		}	
 	}
 }
@@ -263,3 +267,8 @@ li:before{
     color:white;
 }
 
+a{
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
