@@ -20,7 +20,10 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
+<<<<<<< HEAD
 	--cabecalho:rgb(300,0,0);
+=======
+>>>>>>> Tiago
 }
 
 body{
@@ -72,10 +75,13 @@ body{
 	color:var(--actinidio);
 }
 
+<<<<<<< HEAD
 .cabecalho{
 	color:var(--cabecalho);
 }
 
+=======
+>>>>>>> Tiago
 /* TYPOGRAPHY STYLES */
 h1{
 	margin:.5em 0;
@@ -125,14 +131,35 @@ section{
 	justify-content:center;
 }
 
+<<<<<<< HEAD
+=======
+.index{
+	height:7em;
+	background:var(--bg-preto);	
+	border:.125rem solid;
+	border-radius:.25rem;	
+	margin-bottom:.4em;
+	position: relative;
+	display:flex;
+	flex-direction:column;
+	justify-content: start;
+}
+
+>>>>>>> Tiago
 span{
 	font-size:.75em;
 	position:absolute;
 	top:.3em;
+<<<<<<< HEAD
 	left:.5em;	
 }
 
 
+=======
+	left:.5em;
+}
+
+>>>>>>> Tiago
 /* FOOTER */
 footer{
 	font-size:.8em;
@@ -169,7 +196,10 @@ li:before{
 .cabecalho:before{
 	border: none;
 	border-radius: none;	
+<<<<<<< HEAD
 	color: yellow;
+=======
+>>>>>>> Tiago
 }
 
 .cabecalho:hover{
@@ -177,6 +207,10 @@ li:before{
 	transform:scale(1.5);
 	cursor:pointer;
 	z-index:2;
+<<<<<<< HEAD
+=======
+	color-adjust:inherit;
+>>>>>>> Tiago
 }
 
 
@@ -235,7 +269,10 @@ li:before{
 			z-index:2;
 		}
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> Tiago
 		ul{
 			justify-content: center;
 		}
@@ -262,3 +299,11 @@ li:before{
     color:white;
 }
 
+<<<<<<< HEAD
+=======
+a{
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
+>>>>>>> Tiago
