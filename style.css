@@ -245,4 +245,70 @@ li:before{
 
 .linha{
     color:white;
+<<<<<<< HEAD
 }
+=======
+}
+div {
+    width: 1200px;
+    margin:auto;
+}
+
+.button1 {
+	background-color: black; /* Green */
+	border: none;
+	color: white;
+	padding: 40px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 48px;
+	margin: 16px 32px;
+	cursor: pointer;
+	position: relative;
+	left: 20px;
+  }
+  .button2 {
+	background-color: black; /* Green */
+	border: none;
+	color: white;
+	padding: 40px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 48px;
+	margin: 16px 32px;
+	cursor: pointer;
+	position: relative;
+	left: 20px;
+  }
+  .button3 {
+	background-color: black; /* Green */
+	border: none;
+	color: white;
+	padding: 40px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 48px;
+	margin: 16px 32px;
+	cursor: pointer;
+	position: relative;
+	left: 20px;
+	
+  }
+  .button1:hover{
+	transition: .2s;
+	transform: scale(1.5);
+
+}
+  .button2:hover{
+	transition: .2s;
+	transform: scale(1.5);
+
+}
+  .button3:hover{
+	transition: .2s;
+	transform: scale(1.5);
+  }
+>>>>>>> Daiane96
