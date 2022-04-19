@@ -20,6 +20,10 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
+<<<<<<< HEAD
+	--cabecalho:rgb(300,0,0);
+=======
+>>>>>>> Tiago
 }
 
 body{
@@ -30,7 +34,6 @@ body{
 	background:var(--bg-preto);	
 }
 
-	
 /* FOREGROUND COLOR VARIABLES */
 .nao-metal{
 	color:var(--nao-metal);
@@ -72,7 +75,13 @@ body{
 	color:var(--actinidio);
 }
 
-	
+<<<<<<< HEAD
+.cabecalho{
+	color:var(--cabecalho);
+}
+
+=======
+>>>>>>> Tiago
 /* TYPOGRAPHY STYLES */
 h1{
 	margin:.5em 0;
@@ -122,14 +131,35 @@ section{
 	justify-content:center;
 }
 
+<<<<<<< HEAD
+=======
+.index{
+	height:7em;
+	background:var(--bg-preto);	
+	border:.125rem solid;
+	border-radius:.25rem;	
+	margin-bottom:.4em;
+	position: relative;
+	display:flex;
+	flex-direction:column;
+	justify-content: start;
+}
+
+>>>>>>> Tiago
 span{
 	font-size:.75em;
 	position:absolute;
 	top:.3em;
+<<<<<<< HEAD
 	left:.5em;	
 }
 
 
+=======
+	left:.5em;
+}
+
+>>>>>>> Tiago
 /* FOOTER */
 footer{
 	font-size:.8em;
@@ -139,10 +169,10 @@ footer{
 }
 
 ul{
-	display:flex;
-	flex-wrap:wrap;
-  position:sticky;
-  top:1em;
+	display: flex;
+	flex-wrap: wrap;
+  	position: sticky;
+  	top:1em;
 }
 
 li{
@@ -161,6 +191,26 @@ li:before{
 	margin-right:.5em;
 	position:relative;
 	top:.25em;
+}
+
+.cabecalho:before{
+	border: none;
+	border-radius: none;	
+<<<<<<< HEAD
+	color: yellow;
+=======
+>>>>>>> Tiago
+}
+
+.cabecalho:hover{
+	transition:.2s;
+	transform:scale(1.5);
+	cursor:pointer;
+	z-index:2;
+<<<<<<< HEAD
+=======
+	color-adjust:inherit;
+>>>>>>> Tiago
 }
 
 
@@ -219,25 +269,27 @@ li:before{
 			z-index:2;
 		}
 		
+<<<<<<< HEAD
 
+=======
+>>>>>>> Tiago
 		ul{
-			justify-content:center;
+			justify-content: center;
 		}
 		
 		li{
 			flex-basis:auto;
-			margin-bottom:0;	
+			margin-bottom:0;
 		}
 		
 		li + li{
-			margin-left:2em;	
+			margin-left:2em;
 		}	
 	}
 }
 
 @media only screen and (min-width:102.5em){
 	/* GLOBAL STYLES */
-		
 		body{
 			font-size:.75em;	
 		}	
@@ -245,6 +297,7 @@ li:before{
 
 .linha{
     color:white;
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 =======
@@ -312,3 +365,15 @@ div {
 	transform: scale(1.5);
   }
 >>>>>>> Daiane96
+=======
+}
+
+<<<<<<< HEAD
+=======
+a{
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+}
+>>>>>>> Tiago
+>>>>>>> 119a16c5c90ab2dba32f611ec318369ec761b085
