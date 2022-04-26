@@ -53,5 +53,5 @@ class desafio():
 class nivel():
     def __init__(self, nome_nivel, id=None):
         self._id=id
-        Self._nome_nivel=nome_nivel
+        self._nome_nivel=nome_nivel
 
