@@ -20,8 +20,7 @@ CREATE TABLE `curiosidade` (
     `id_curiosidade` int(11) NOT NULL AUTO_INCREMENT,
     `tipo` varchar(20) NOT NULL,
     `descricao` text NOT NULL,
-    `elemento` int(11) NOT NUL
-    L,
+    `elemento` int(11) NOT NULL,
     PRIMARY KEY(`id_curiosidade`),
     FOREIGN KEY(`fk_elemento`) REFERENCES elemento(`id_elemento`) ON DELETE CASCADE ON UPDATE CASCADE
     )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
