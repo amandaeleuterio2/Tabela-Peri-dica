@@ -20,13 +20,12 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
-	--cabecalho:rgb(300,0,0);
 }
 
 body{
-	font: 1em/1 'Montserrat', sans-serif;
+	font:1em/1 'Montserrat', sans-serif;
 	color:rgb(255,255,255);
-	text-align: center;
+	text-align:center;
 	padding:1em 5%;
 	background:var(--bg-preto);	
 }
@@ -70,10 +69,6 @@ body{
 	
 .actinidio{
 	color:var(--actinidio);
-}
-
-.cabecalho{
-	color:var(--cabecalho);
 }
 
 /* TYPOGRAPHY STYLES */
@@ -141,7 +136,7 @@ span{
 	font-size:.75em;
 	position:absolute;
 	top:.3em;
-	left:.5em;	
+	left:.5em;
 }
 
 /* FOOTER */
@@ -180,7 +175,6 @@ li:before{
 .cabecalho:before{
 	border: none;
 	border-radius: none;	
-	color: yellow;
 }
 
 .cabecalho:hover{
@@ -273,73 +267,8 @@ li:before{
     color:white;
 }
 
-div {
-    width: 1200px;
-    margin:auto;
-}
-
-.button1 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-  }
-  .button2 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-  }
-  .button3 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-	
-  }
-  .button1:hover{
-	transition: .2s;
-	transform: scale(1.5);
-
-}
-  .button2:hover{
-	transition: .2s;
-	transform: scale(1.5);
-
-}
-
-  .button3:hover{
-	transition: .2s;
-	transform: scale(1.5);
-  }
-
 a{
 	color: white;
 	text-decoration: none;
 	font-size: 16px;
 }
-
