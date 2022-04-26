@@ -20,10 +20,6 @@
 	--metal-transicao:rgb(245,175,175);
 	--lantanideo:rgb(150,225,225);
 	--actinidio:rgb(230,190,220);
-<<<<<<< HEAD
-	--cabecalho:rgb(300,0,0);
-=======
->>>>>>> Tiago
 }
 
 body{
@@ -75,13 +71,6 @@ body{
 	color:var(--actinidio);
 }
 
-<<<<<<< HEAD
-.cabecalho{
-	color:var(--cabecalho);
-}
-
-=======
->>>>>>> Tiago
 /* TYPOGRAPHY STYLES */
 h1{
 	margin:.5em 0;
@@ -131,8 +120,6 @@ section{
 	justify-content:center;
 }
 
-<<<<<<< HEAD
-=======
 .index{
 	height:7em;
 	background:var(--bg-preto);	
@@ -145,21 +132,13 @@ section{
 	justify-content: start;
 }
 
->>>>>>> Tiago
 span{
 	font-size:.75em;
 	position:absolute;
 	top:.3em;
-<<<<<<< HEAD
-	left:.5em;	
-}
-
-
-=======
 	left:.5em;
 }
 
->>>>>>> Tiago
 /* FOOTER */
 footer{
 	font-size:.8em;
@@ -196,10 +175,6 @@ li:before{
 .cabecalho:before{
 	border: none;
 	border-radius: none;	
-<<<<<<< HEAD
-	color: yellow;
-=======
->>>>>>> Tiago
 }
 
 .cabecalho:hover{
@@ -207,10 +182,7 @@ li:before{
 	transform:scale(1.5);
 	cursor:pointer;
 	z-index:2;
-<<<<<<< HEAD
-=======
 	color-adjust:inherit;
->>>>>>> Tiago
 }
 
 
@@ -269,10 +241,6 @@ li:before{
 			z-index:2;
 		}
 		
-<<<<<<< HEAD
-
-=======
->>>>>>> Tiago
 		ul{
 			justify-content: center;
 		}
@@ -297,83 +265,10 @@ li:before{
 
 .linha{
     color:white;
-<<<<<<< HEAD
-<<<<<<< HEAD
-}
-=======
-}
-div {
-    width: 1200px;
-    margin:auto;
 }
 
-.button1 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-  }
-  .button2 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-  }
-  .button3 {
-	background-color: black; /* Green */
-	border: none;
-	color: white;
-	padding: 40px 40px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 48px;
-	margin: 16px 32px;
-	cursor: pointer;
-	position: relative;
-	left: 20px;
-	
-  }
-  .button1:hover{
-	transition: .2s;
-	transform: scale(1.5);
-
-}
-  .button2:hover{
-	transition: .2s;
-	transform: scale(1.5);
-
-}
-  .button3:hover{
-	transition: .2s;
-	transform: scale(1.5);
-  }
->>>>>>> Daiane96
-=======
-}
-
-<<<<<<< HEAD
-=======
 a{
 	color: white;
 	text-decoration: none;
 	font-size: 16px;
 }
->>>>>>> Tiago
->>>>>>> 119a16c5c90ab2dba32f611ec318369ec761b085
