@@ -8,7 +8,7 @@ SQL_ATUALIZA_ELEMENTO = 'UPDATE elemento SET nome_elemento = %s, num_atomico = %
 SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe'
 SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
 
-SQL_BUSCA_USUARIO_POR_ID = 'SELECT id, nome, senha from usuario where id=%s'
+SQL_BUSCA_USUARIO_POR_ID = 'SELECT id, nome, email, senha, tipo_usuario from usuario where id=%s'
 
 SQL_ATUALIZA_CLASSE = 'UPDATE classe SET nome_classe = %s where id_classe = %s'
 SQL_CRIA_CLASSE = 'INSERT into classe (nome_classe) values (%s)'
@@ -30,74 +30,111 @@ class ElementoDao:
         cursor = self.__db.connection.cursor()
 
         if (elemento._id_elemento):
-            cursor.execute(SQL_ATUALIZA_ELEMENTO, (elemento._nome_elemento, elemento.git._especie, animal._sexo, animal._raca, animal._porte, animal._cliente_id, animal._id))
+            cursor.execute(SQL_ATUALIZA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica, elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe, elemento._id_elemento))
         else:
-            cursor.execute(SQL_CRIA_ANIMAL, (animal._nome_animal, animal._especie, animal._sexo, animal._raca, animal._porte, animal._cliente_id))
+            cursor.execute(SQL_CRIA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica, elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe))
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()
-        return animal
+        return elemento
 
     def listar(self):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_ANIMAIS)
-        animais = traduz_animais(cursor.fetchall())
-        return animais
+        cursor.execute(SQL_BUSCA_ELEMENTO)
+        elementos = traduz_elementos(cursor.fetchall())
+        return elementos
 
     def busca_por_id(self, id):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_ANIMAL_POR_ID, (id,))
+        cursor.execute(SQL_ELEMENTO_POR_ID, (id,))
         tupla = cursor.fetchone()
-        return Animal(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
+        return elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
 
     def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_ANIMAL, (id,))
+        self.__db.connection.cursor().execute(SQL_DELETA_ELEMENTO, (id,))
         self.__db.connection.commit()
 
-def traduz_animais(animais):
-    def cria_animal_com_tupla(tupla):
-        return Animal(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
-    return list(map(cria_animal_com_tupla, animais))
+def traduz_elementos(elementos):
+    def cria_elemento_com_tupla(tupla):
+        return elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
+    return list(map(cria_elemento_com_tupla, elementos))
 
-class ClienteDao:
+class ClasseDao:
     def __init__(self, db):
         self.__db = db
 
-    def salvar(self, cliente):
+    def salvar(self, classe):
         cursor = self.__db.connection.cursor()
 
-        if (cliente._id):
-            cursor.execute(SQL_ATUALIZA_CLIENTE, (
-            cliente._nome, cliente._cpf, cliente._rua, cliente._numero, cliente._bairro, cliente._cidade, cliente._telefone, cliente._id))
+        if (classe._id_classe):
+            cursor.execute(SQL_ATUALIZA_CLASSE, (
+            classe._nome_classe, classe._id_classe))
 
         else:
-            cursor.execute(SQL_CRIA_CLIENTE, (
-            cliente._nome, cliente._cpf, cliente._rua, cliente._numero, cliente._bairro, cliente._cidade, cliente._telefone))
+            cursor.execute(SQL_CRIA_CLASSE, (
+            classe._nome_classe))
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()
-        return cliente
+        return classe
 
     def listar(self):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_CLIENTES)
-        clientes = traduz_clientes(cursor.fetchall())
-        return clientes
+        cursor.execute(SQL_BUSCA_CLASSE)
+        classes = traduz_classes(cursor.fetchall())
+        return classes
 
     def busca_por_id(self, id):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_CLIENTE_POR_ID, (id,))
+        cursor.execute(SQL_CLASSE_POR_ID, (id,))
         tupla = cursor.fetchone()
-        return Cliente(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
+        return classe(tupla[1], id=tupla[0])
 
     def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_CLIENTE, (id,))
+        self.__db.connection.cursor().execute(SQL_DELETA_CLASSE, (id,))
         self.__db.connection.commit()
 
-def traduz_clientes(clientes):
-    def cria_cliente_com_tupla(tupla):
-        return Cliente(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5],tupla[6],tupla[7], id=tupla[0])
-    return list(map(cria_cliente_com_tupla, clientes))
+def traduz_classes(classes):
+    def cria_classe_com_tupla(tupla):
+        return classe(tupla[1], id=tupla[0])
+    return list(map(cria_classe_com_tupla, classes))
+
+class CuriosidadesDao:
+    def __init__(self, db):
+        self.__db = db
+
+    def salvar(self, curiosidade):
+        cursor = self.__db.connection.cursor()
+
+        if (curiosidade._id):
+            cursor.execute(SQL_ATUALIZA_CURIOSIDADE, (curiosidade._tipo, curiosidade._descricao, curiosidade._elemento,curiosidade._id))
+        else:
+            cursor.execute(SQL_CRIA_CURIOSIDADE, (curiosidade._tipo, curiosidade._descricao, curiosidade._elemento))
+            cursor._id = cursor.lastrowid
+
+        self.__db.connection.commit()
+        return curiosidade
+
+    def listar(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_CURIOSIDADE)
+        curiosidades = traduz_curiosidades(cursor.fetchall())
+        return curiosidades
+
+    def busca_por_id(self, id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_CURIOSIDADE_POR_ID, (id,))
+        tupla = cursor.fetchone()
+        return curiosidades(tupla[1], tupla[2], tupla[3], id=tupla[0])
+
+    def deletar(self, id):
+        self.__db.connection.cursor().execute(SQL_DELETA_CURIOSIDADE, (id,))
+        self.__db.connection.commit()
+
+def traduz_curiosidades(curiosidades):
+    def cria_curiosidade_com_tupla(tupla):
+        return curiosidades(tupla[1], tupla[2], tupla[3], id=tupla[0])
+    return list(map(cria_curiosidade_com_tupla, curiosidades))
 
 class UsuarioDao:
     def __init__(self, db):
@@ -111,154 +148,4 @@ class UsuarioDao:
         return usuario
 
 def traduz_usuario(tupla):
-    return Usuario(tupla[0], tupla[1], tupla[2])
-
-class AgendamentoDao:
-    def __init__(self, db):
-        self.__db = db
-
-    def salvar(self, agendamento):
-        cursor = self.__db.connection.cursor()
-
-        if (agendamento._id):
-            cursor.execute(SQL_ATUALIZA_AGENDAMENTO, (agendamento._data_agendamento, agendamento._animal_id, agendamento._id))
-        else:
-            cursor.execute(SQL_CRIA_AGENDAMENTO, (agendamento._data_agendamento, agendamento._animal_id))
-            cursor._id = cursor.lastrowid
-
-        self.__db.connection.commit()
-        return agendamento
-
-    def listar(self):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_AGENDAMENTO)
-        agendamentos = traduz_agendamentos(cursor.fetchall())
-        return agendamentos
-
-    def busca_por_id(self, id):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_AGENDAMENTO_POR_ID, (id,))
-        tupla = cursor.fetchone()
-        return Agendamento(tupla[1], tupla[2], tupla[3], id=tupla[0])
-
-    def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_AGENDAMENTO, (id,))
-        self.__db.connection.commit()
-
-def traduz_agendamentos(agendamentos):
-    def cria_agendamento_com_tupla(tupla):
-        return Agendamento(tupla[1], tupla[2], tupla[3], id=tupla[0])
-    return list(map(cria_agendamento_com_tupla, agendamentos))
-
-
-class AtendimentoDao:
-    def __init__(self, db):
-        self.__db = db
-
-    def salvar(self, atendimento):
-        cursor = self.__db.connection.cursor()
-        if (atendimento._id):
-            cursor.execute(SQL_ATUALIZA_ATENDIMENTO, (atendimento._descricao, atendimento._subtotal, atendimento._adicional, atendimento._desconto, atendimento._total,
-                                                      atendimento._funcionario_id, atendimento._agenda_id, atendimento._id))
-        else:
-            cursor.execute(SQL_CRIA_ATENDIMENTO, (atendimento._descricao, atendimento._subtotal, atendimento._adicional, atendimento._desconto, atendimento._total,
-                                                  atendimento._funcionario_id, atendimento._agenda_id))
-            cursor._id = cursor.lastrowid
-
-        self.__db.connection.commit()
-        return atendimento
-
-    def listar(self):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_ATENDIMENTO)
-        atendimentos = traduz_atendimentos(cursor.fetchall())
-        return atendimentos
-
-    def busca_por_id(self, id):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_ATENDIMENTO_POR_ID, (id,))
-        tupla = cursor.fetchone()
-        return Atendimento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], tupla[9], id=tupla[0])
-
-    def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_ATENDIMENTO, (id,))
-        self.__db.connection.commit()
-
-def traduz_atendimentos(atendimentos):
-    def cria_atendimento_com_tupla(tupla):
-        return Atendimento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], tupla[9], id=tupla[0])
-    return list(map(cria_atendimento_com_tupla, atendimentos))
-
-class FuncionarioDao:
-    def __init__(self, db):
-        self.__db = db
-
-    def salvar(self, funcionario):
-        cursor = self.__db.connection.cursor()
-        if (funcionario._id):
-            cursor.execute(SQL_ATUALIZA_FUNCIONARIO, (funcionario._nome, funcionario._cpf, funcionario._rua, funcionario._numero, funcionario._bairro, funcionario._cidade, funcionario._telefone, funcionario._data_admissao, funcionario._cargo, funcionario._id))
-        else:
-            cursor.execute(SQL_CRIA_FUNCIONARIO, (funcionario._nome, funcionario._cpf, funcionario._rua, funcionario._numero, funcionario._bairro, funcionario._cidade, funcionario._telefone, funcionario._data_admissao, funcionario._cargo))
-            cursor._id = cursor.lastrowid
-
-        self.__db.connection.commit()
-        return funcionario
-
-    def listar(self):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_FUNCIONARIO)
-        funcionarios = traduz_funcionarios(cursor.fetchall())
-        return funcionarios
-
-    def busca_por_id(self, id):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_FUNCIONARIO_POR_ID, (id,))
-        tupla = cursor.fetchone()
-        return Funcionario(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], tupla[9], id=tupla[0])
-
-    def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_FUNCIONARIO, (id,))
-        self.__db.connection.commit()
-
-def traduz_funcionarios(funcionarios):
-    def cria_funcionario_com_tupla(tupla):
-        return Funcionario(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5],tupla[6],tupla[7], tupla[8], tupla[9], id=tupla[0])
-    return list(map(cria_funcionario_com_tupla, funcionarios))
-
-class FinanceiroDao:
-    def __init__(self, db):
-        self.__db = db
-
-    def salvar(self, financeiro):
-        cursor = self.__db.connection.cursor()
-        if (financeiro._id):
-            cursor.execute(SQL_ATUALIZA_FINANCEIRO, (financeiro._data_hora_chegada, financeiro._funcionario_id, financeiro._atendimento_id, financeiro._agendamento_id,
-                                                     financeiro._forma_pagamento, financeiro._valor, financeiro._data_recebimento, financeiro._data_hora_saida, financeiro._id))
-        else:
-            cursor.execute(SQL_CRIA_FINANCEIRO, (financeiro._data_hora_chegada, financeiro._funcionario_id, financeiro._atendimento_id, financeiro._agendamento_id,
-                                                     financeiro._forma_pagamento, financeiro._valor, financeiro._data_recebimento, financeiro._data_hora_saida))
-            cursor._id = cursor.lastrowid
-
-        self.__db.connection.commit()
-        return financeiro
-
-    def listar(self):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_FINANCEIRO)
-        financeiros = traduz_financeiros(cursor.fetchall())
-        return financeiros
-
-    def busca_por_id(self, id):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_FINANCEIRO_POR_ID, (id,))
-        tupla = cursor.fetchone()
-        return Financeiro(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], tupla[9], tupla[10], tupla[11], id=tupla[0])
-
-    def deletar(self, id):
-        self.__db.connection.cursor().execute(SQL_DELETA_FINANCEIRO, (id,))
-        self.__db.connection.commit()
-
-def traduz_financeiros(financeiros):
-    def cria_financeiro_com_tupla(tupla):
-        return Financeiro(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], tupla[9], tupla[10], tupla[11], id=tupla[0])
-    return list(map(cria_financeiro_com_tupla, financeiros))
+    return usuario(tupla[0], tupla[1], tupla[2], tupla[3], tupla[4])
