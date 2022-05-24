@@ -1,47 +1,58 @@
 import MySQLdb
 print('Conectando...')
-conn=MySQLdb.connect(user='root', passwd='', host='127.0.0.1', port=3306, charset='utf8')
+conn = MySQLdb.connect(user='root', passwd='123456',
+                       host='127.0.0.1', port=3306, charset='utf8')
 
-#Descomente se quiser desfazer o banco
-#conn.cursor().execute("DROP DATABASE `tabelaperiodica`;")
-#conn.commit()
+# Descomente se quiser desfazer o banco
+conn.cursor().execute("DROP DATABASE `tabelaperiodica`;")
+conn.commit()
 
-criar_tabelas='''SET NAMES utf8;
+criar_tabelas = '''SET NAMES utf8;
     CREATE DATABASE `tabelaperiodica` DEFAULT CHARSET=utf8;
     USE `tabelaperiodica`;
 
-CREATE TABLE `classe` (
-    `id_classe` int(11) NOT NULL AUTO_INCREMENT,
-    `nome_classe` varchar(45) NOT NULL
-    PRIMARY KEY (`id_classe`)
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`classe` (
+  `id_classe` INT NOT NULL AUTO_INCREMENT,
+  `nome_classe` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_classe`))
+ENGINE = InnoDB;
 
-CREATE TABLE `curiosidade` (
-    `id_curiosidade` int(11) NOT NULL AUTO_INCREMENT,
-    `tipo` varchar(20) NOT NULL,
-    `descricao` text NOT NULL,
-    `elemento` int(11) NOT NULL,
-    PRIMARY KEY(`id_curiosidade`),
-    FOREIGN KEY(`fk_elemento`) REFERENCES elemento(`id_elemento`) ON DELETE CASCADE ON UPDATE CASCADE
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`elemento` (
+  `id_elemento` INT NOT NULL AUTO_INCREMENT,
+  `nome_elemento` VARCHAR(45) NOT NULL,
+  `num_atomico` INT NOT NULL,
+  `massa_atomica` DOUBLE NOT NULL,
+  `estado_fisico` VARCHAR(20) NOT NULL,
+  `simbolo` VARCHAR(2) NOT NULL,
+  `distribuicao_eletronica` VARCHAR(20) NOT NULL,
+  `classe` INT NOT NULL,
+  PRIMARY KEY (`id_elemento`),
+  INDEX `fk_elemento_classe_idx` (`classe` ASC) VISIBLE,
+  CONSTRAINT `fk_elemento_classe`
+    FOREIGN KEY (`classe`)
+    REFERENCES `tabelaperiodica`.`classe` (`id_classe`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-CREATE TABLE `elemento` (
-    `id_elemento` int(11) NOT NULL AUTO_INCREMENT,
-    `nome_elemento` varchar(45) NOT NULL,
-    `num_atomico` int(11) NOT NULL,
-    `massa_atomica` decimal(10,0) NOT NULL,
-    `estado_fisico` varchar(20) NOT NULL,
-    `simbolo` varchar(2) NOT NULL,
-    `distribuicao_eletronica` varchar(20) NOT NULL,
-    `classe` int(11) NOT NULL
-    PRIMARY KEY(`id_elemento`),
-    FOREIGN KEY(`fk_classe`) REFERENCES classe(`id_classe`) ON DELETE CASCADE ON UPDATE CASCADE
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`curiosidade` (
+  `id_curiosidade` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  `descricao` TEXT NOT NULL,
+  `elemento` INT NOT NULL,
+  PRIMARY KEY (`id_curiosidade`),
+  INDEX `fk_curiosidade_elemento1_idx` (`elemento` ASC) VISIBLE,
+  CONSTRAINT `fk_curiosidade_elemento1`
+    FOREIGN KEY (`elemento`)
+    REFERENCES `tabelaperiodica`.`elemento` (`id_elemento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 '''
 
 conn.cursor().execute(criar_tabelas)
 
-cursor=conn.cursor()
+cursor = conn.cursor()
 cursor.executemany(
     'INSERT INTO `classe` (`id_classe`, `nome_classe`) VALUES (%s, %s)',
     [
@@ -63,6 +74,40 @@ for classe in cursor.fetchall():
     print(classe[1])
 
 cursor.executemany(
+    'INSERT INTO `elemento` (`id_elemento`, `nome_elemento`, `num_atomico`, `massa_atomica`, `estado_fisico`, `simbolo`, `distribuicao_eletronica`, `classe`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+    [
+        (1, 'Hidrogênio', 1, '1', 'Gasoso', 'H', '1s¹', 8),
+        (2, 'Hélio', 2, '4', 'Gasoso', 'He', '1s²', 6),
+        (4, 'Lítio', 3, '7', 'Sólido', 'Li', '[He]2s¹', 1),
+        (5, 'Berílio', 4, '9', 'Sólido', 'Be', '[He]2s²', 2),
+        (6, 'Boro', 5, '11', 'Sólido', 'B', '[He]2s²2p¹', 7),
+        (7, 'Carbono', 6, '12', 'Sólido', 'C', '[He]2s²2p²', 8),
+        (8, 'Nitrogênio', 7, '14', 'Gasoso', 'N', '[He]2s²2p³', 8),
+        (9, 'Oxigênio', 8, '16', 'Gasoso', 'O', '[He]2s²2p⁴', 8),
+        (10, 'Flúor', 9, '19', 'Gasoso', 'F', '[He]2s²2p⁵', 9),
+        (11, 'Neônio', 10, '20', 'Gasoso', 'Ne', '[He]2s²2p⁶', 6),
+        (12, 'Sódio', 11, '23', 'Sólido', 'Na', '[Ne]3s¹', 1),
+        (13, 'Magnésio', 12, '24', 'Sólido', 'Mg', '[Ne]3s²', 2),
+        (14, 'Alumínio', 13, '27', 'Sólido', 'Al', '[Ne]3s²3p¹', 10),
+        (15, 'Silício', 14, '28', 'Sólido', 'Si', '[Ne]3s²3p²', 7),
+        (16, 'Fósforo', 15, '31', 'Sólido', 'P', '[Ne]3s²3p³', 8),
+        (17, 'Enxofre', 16, '32', 'Sólido', 'S', '[Ne]3s²3p⁴', 8),
+        (18, 'Cloro', 17, '35', 'Sólido', 'Cl', '[Ne]3s²3p⁵', 9),
+        (19, 'Argônio', 18, '40', 'Gasoso', 'Ar', '[Ne]3s²3p⁶', 6),
+        (20, 'Potássio', 19, '39', 'Sólido', 'K', '[Ar]4s¹', 1),
+        (21, 'Cálcio', 20, '40', 'Sólido', 'Ca', '[Ar]4s²', 2),
+        (22, 'Escândio', 21, '45', 'Sólido', 'Sc', '[Ar]3d¹4s²', 3),
+        (23, 'Titânio', 22, '48', 'Sólido', 'Ti', '[Ar]3d²4s²', 3),
+        (24, 'Vanádio', 23, '51', 'Sólido', 'V', '[Ar]3d³4s²', 3),
+        (25, 'Crômio', 24, '52', 'Sólido', 'Cr', '[Ar]3d⁵4s¹', 3)
+    ])
+
+cursor.execute('select * from tabelaperiodica.elemento')
+print(' ------------ Elementos: ------------ ')
+for elemento in cursor.fetchall():
+    print(elemento[1])
+
+cursor.executemany(
     'INSERT INTO `curiosidade` (`id_curiosidade`, `tipo`, `descricao`, `elemento`) VALUES (%s, %s, %s, %s)',
     [
         (1, 'Propriedades', 'Ocorre como um gás incolor, inodoro e altamente inflamável. É o elemento de menor densidade da Tabela Periódica e por este motivo era utilizado no enchimento de dirigíveis, mas teve seu uso abolido devido à elevada inflamabilidade.', 1),
@@ -74,43 +119,46 @@ cursor.executemany(
     ])
 
 cursor.execute('select * from tabelaperiodica.curiosidade')
-print(' ------------ Curisoidades: ------------ ')
+print(' ------------ Curiosidades: ------------ ')
 for curiosidade in cursor.fetchall():
     print(curiosidade[1])
 
 cursor.executemany(
-    'INSERT INTO `elemento` (`id_elemento`, `nome_elemento`, `num_atomico`, `massa_atomica`, `estado_fisico`, `simbolo`, `distribuicao_eletronica`, `classe`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+    'INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `descricao_tipo_usuario`) VALUES (%s, %s)',
     [
-        (1, 'Hidrogênio', 1, '1', 'Gasoso', 'H', '1s¹', 8),
-        (2, 'Hélio', 2, '4', 'Gasoso', 'He', '1s²', 6),
-        (4, 'Lítio', 3, '7', 'Sólido', 'Li', '[He]2s¹', 1),
-        (5, 'Berílio', 4, '9', 'Sólido', 'Be', '[He]2s²', 2),
-        (6, 'Boro', 5, '11', 'Sólido', 'B', '[He]2s²2p¹', 7),
-        (7, 'Carbono', 6, '12', 'Sólido', 'C', '[He]2s²2p²', 8),
-        (8, 'Nitrogênio', 7, '14', 'Gasoso', 'N', '[He]2s²2p³', 8),
-        (9, 'Oxigênio', 8, '16', 'Gasoso', 'O', '[He]2s²2p4', 8),
-        (10, 'Flúor', 9, '19', 'Gasoso', 'F', '[He]2s²2p5', 9),
-        (11, 'Neônio', 10, '20', 'Gasoso', 'Ne', '[He]2s²2p6', 6),
-        (12, 'Sódio', 11, '23', 'Sólido', 'Na', '[Ne]3s¹', 1),
-        (13, 'Magnésio', 12, '24', 'Sólido', 'Mg', '[Ne]3s²', 2),
-        (14, 'Alumínio', 13, '27', 'Sólido', 'Al', '[Ne]3s²3p¹', 10),
-        (15, 'Silício', 14, '28', 'Sólido', 'Si', '[Ne]3s²3p²', 7),
-        (16, 'Fósforo', 15, '31', 'Sólido', 'P', '[Ne]3s²3p³', 8),
-        (17, 'Enxofre', 16, '32', 'Sólido', 'S', '[Ne]3s²3p4', 8),
-        (18, 'Cloro', 17, '35', 'Sólido', 'Cl', '[Ne]3s²3p5', 9),
-        (19, 'Argônio', 18, '40', 'Gasoso', 'Ar', '[Ne]3s²3p6', 6),
-        (20, 'Potássio', 19, '39', 'Sólido', 'K', '[Ar]4s¹', 1),
-        (21, 'Cálcio', 20, '40', 'Sólido', 'Ca', '[Ar]4s²', 2),
-        (22, 'Escândio', 21, '45', 'Sólido', 'Sc', '[Ar]3d¹4s²', 3),
-        (23, 'Titânio', 22, '48', 'Sólido', 'Ti', '[Ar]3d²4s²', 3),
-        (24, 'Vanádio', 23, '51', 'Sólido', 'V', '[Ar]3d³4s²', 3),
-        (25, 'Crômio', 24, '52', 'Sólido', 'Cr', '[Ar]3d54s¹', 3),
+        (1, 'Professor'),
+        (2, 'Aluno'),
     ])
 
-cursor.execute('select * from tabelaperiodica.curiosidade')
-print(' ------------ Curisoidades: ------------ ')
-for curiosidade in cursor.fetchall():
-    print(curiosidade[1])
+cursor.execute('select * from tabelaperiodica.tipo_usuario')
+print(' ------------ Tipo de Usuário: ------------ ')
+for tipo_usuario in cursor.fetchall():
+    print(tipo_usuario[1])
 
+cursor.executemany(
+    'INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha`, `tipo_usuario`) VALUES (%s, %s, %s, %s, %s)',
+    [
+        (1, 'Amanda Eleutério', 'amanda2@gmail.com', '54321', 1),
+        (2, 'Daiane Cristina', 'daiane@gmail.com', '54321', 1),
+        (3, 'Tiago Carlos', 'tiago@gmail.com', '54321', 1),
+    ])
+
+cursor.execute('select * from tabelaperiodica.usuario')
+print(' ------------ Usuário: ------------ ')
+for usuario in cursor.fetchall():
+    print(usuario[1])
+
+cursor.executemany(
+    'INSERT INTO `nivel` (`id_nivel`, `nome_nivel`) VALUES(%s, %s)',
+    [
+        (1, 'Fácil'),
+        (2, 'Médio'),
+        (3, 'Difícil'),
+    ])
+
+cursor.execute('select * from tabelaperiodica.nivel')
+print(' ------------ Nível: ------------ ')
+for nivel in cursor.fetchall():
+    print(nivel[1])
 conn.commit()
 cursor.close()
