@@ -34,7 +34,7 @@ class curiosidades():
         self._id=id
         self._tipo=tipo
         self._descricao=descricao
-        self._elemento=elemento
+        self._elemento=descricao
 
 class perguntas():
     def __init__(self, nome_pergunta, descricao, resposta, desafio_id, id=None):
