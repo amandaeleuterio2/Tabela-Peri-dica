@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`elemento` (
   CONSTRAINT `fk_elemento_classe`
     FOREIGN KEY (`classe`)
     REFERENCES `tabelaperiodica`.`classe` (`id_classe`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`curiosidade` (
@@ -45,9 +45,72 @@ CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`curiosidade` (
   CONSTRAINT `fk_curiosidade_elemento1`
     FOREIGN KEY (`elemento`)
     REFERENCES `tabelaperiodica`.`elemento` (`id_elemento`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`tipo_usuario` (
+  `id_tipo_usuario` INT NOT NULL AUTO_INCREMENT,
+  `descricao_tipo_usuario` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_tipo_usuario`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nome_usuario` VARCHAR(45) NOT NULL,
+  `email_usuario` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  `tipo_usuario` INT NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  INDEX `fk_usuario_tipo_usuario1_idx` (`tipo_usuario` ASC) VISIBLE,
+  CONSTRAINT `fk_usuario_tipo_usuario1`
+    FOREIGN KEY (`tipo_usuario`)
+    REFERENCES `tabelaperiodica`.`tipo_usuario` (`id_tipo_usuario`)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`nivel` (
+  `id_nivel` INT NOT NULL AUTO_INCREMENT,
+  `nome_nivel` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_nivel`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`desafio` (
+  `id_desafio` INT NOT NULL AUTO_INCREMENT,
+  `quanidade_perguntas` VARCHAR(45) NOT NULL,
+  `nivel` INT NOT NULL,
+  PRIMARY KEY (`id_desafio`),
+  INDEX `fk_desafio_nivel1_idx` (`nivel` ASC) VISIBLE,
+  CONSTRAINT `fk_desafio_nivel1`
+    FOREIGN KEY (`nivel`)
+    REFERENCES `tabelaperiodica`.`nivel` (`id_nivel`)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`perguntas` (
+  `id_perguntas` INT NOT NULL AUTO_INCREMENT,
+  `nome_pergunta` VARCHAR(20) NOT NULL,
+  `descricao` TEXT NOT NULL,
+  `resposta` TEXT NOT NULL,
+  `desafio` INT NOT NULL,
+  `usuario` INT NOT NULL,
+  PRIMARY KEY (`id_perguntas`),
+  INDEX `fk_perguntas_usuario1_idx` (`usuario` ASC) VISIBLE,
+  INDEX `fk_perguntas_desafio1_idx` (`desafio` ASC) VISIBLE,
+  CONSTRAINT `fk_perguntas_usuario1`
+    FOREIGN KEY (`usuario`)
+    REFERENCES `tabelaperiodica`.`usuario` (`id_usuario`)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_perguntas_desafio1`
+    FOREIGN KEY (`desafio`)
+    REFERENCES `tabelaperiodica`.`desafio` (`id_desafio`)
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
 '''
 
 conn.cursor().execute(criar_tabelas)
