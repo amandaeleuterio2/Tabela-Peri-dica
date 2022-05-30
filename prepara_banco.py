@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`tipo_usuario` (
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`usuario` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `id_usuario` VARCHAR(45) NOT NULL,
   `nome_usuario` VARCHAR(45) NOT NULL,
   `email_usuario` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
@@ -95,15 +95,8 @@ CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`perguntas` (
   `descricao` TEXT NOT NULL,
   `resposta` TEXT NOT NULL,
   `desafio` INT NOT NULL,
-  `usuario` INT NOT NULL,
   PRIMARY KEY (`id_perguntas`),
-  INDEX `fk_perguntas_usuario1_idx` (`usuario` ASC) VISIBLE,
   INDEX `fk_perguntas_desafio1_idx` (`desafio` ASC) VISIBLE,
-  CONSTRAINT `fk_perguntas_usuario1`
-    FOREIGN KEY (`usuario`)
-    REFERENCES `tabelaperiodica`.`usuario` (`id_usuario`)
-    ON DELETE CASCADE 
-    ON UPDATE CASCADE,
   CONSTRAINT `fk_perguntas_desafio1`
     FOREIGN KEY (`desafio`)
     REFERENCES `tabelaperiodica`.`desafio` (`id_desafio`)
@@ -201,9 +194,9 @@ for tipo_usuario in cursor.fetchall():
 cursor.executemany(
     'INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha`, `tipo_usuario`) VALUES (%s, %s, %s, %s, %s)',
     [
-        (1, 'Amanda Eleutério', 'amanda2@gmail.com', '54321', 1),
-        (2, 'Daiane Cristina', 'daiane@gmail.com', '54321', 1),
-        (3, 'Tiago Carlos', 'tiago@gmail.com', '54321', 1),
+        ('amanda', 'Amanda Eleutério', 'amanda2@gmail.com', '54321', 1),
+        ('daiane', 'Daiane Cristina', 'daiane@gmail.com', '54321', 1),
+        ('tiago', 'Tiago Carlos', 'tiago@gmail.com', '54321', 1),
     ])
 
 cursor.execute('select * from tabelaperiodica.usuario')

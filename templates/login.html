@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tabela Periódica</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body class="cor">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    <div class="container" align="center">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul id="messages" class="list-unstyled">
+        {% for message in messages %}
+        <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <h1>Faça seu login</h1>
+      <form method="POST" action="/autenticar">
+        <input type="hidden" name="proxima" value="{{proxima}}" />
+        <p>
+          <label class="control-label col-sm-2">Nome de usuário:</label>
+          <input
+            class="form-group d-flex justify-content-center"
+            type="text"
+            name="usuario"
+            required
+          />
+        </p>
+        <p>
+          <label>Senha:</label>
+          <input
+            class="form-group d-flex justify-content-center"
+            type="password"
+            name="senha"
+            required
+          />
+        </p>
+        <p>
+          <small id="passwordHelpBlock" class="form-text text-muted">
+            Sua senha deve ter entre 8 e 20 caracteres, os quais devem ser
+            letras e números, sem espaços, caracteres especiais ou emojis.
+          </small>
+        </p>
+        <p><button class="btn btn-primary" type="submit">Entrar</button></p>
+      </form>
+    </div>
+  </body>
+</html>
