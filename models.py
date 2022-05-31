@@ -1,11 +1,10 @@
 class usuario():
-    def __init__(self, nome, email, senha, tipo_usuario_id, tipo_usuario, id=None):
-        self._id=id
+    def __init__(self, id, nome, email, senha, tipo_usuario_id):
+        self._id = id
         self._nome=nome
         self._email=email
         self._senha=senha
         self._tipo_usuario_id = tipo_usuario_id
-        self._tipo_usuario=tipo_usuario
 
 class tipo_usuario():
     def __init__(self, descricao_tipo_usuario, id=None):
@@ -34,7 +33,7 @@ class curiosidades():
         self._id=id
         self._tipo=tipo
         self._descricao=descricao
-        self._elemento=descricao
+        self._elemento=elemento
 
 class perguntas():
     def __init__(self, nome_pergunta, descricao, resposta, desafio_id, id=None):

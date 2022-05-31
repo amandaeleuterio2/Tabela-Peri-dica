@@ -8,7 +8,7 @@ SQL_ATUALIZA_ELEMENTO = 'UPDATE elemento SET nome_elemento = %s, num_atomico = %
 SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe'
 SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
 
-SQL_BUSCA_USUARIO_POR_ID = 'SELECT id_usuario, nome_usuario, email_usuario, senha, tipo_usuario from usuario where id_usuario=%s'
+SQL_BUSCA_USUARIO_POR_ID = 'SELECT id_usuario, nome_usuario, email_usuario, senha, tipo_usuario.descricao_tipo_usuario from usuario INNER JOIN tipo_usuario ON usuario.tipo_usuario = tipo_usuario.id_tipo_usuario where id_usuario=%s'
 
 SQL_ATUALIZA_CLASSE = 'UPDATE classe SET nome_classe = %s where id_classe = %s'
 SQL_CRIA_CLASSE = 'INSERT into classe (nome_classe) values (%s)'
@@ -151,13 +151,12 @@ class UsuarioDao:
     def __init__(self, db):
         self.__db = db
 
-    def busca_por_id(self, id_usuario):
+    def busca_por_id(self, id):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_USUARIO_POR_ID, (id_usuario,))
+        cursor.execute(SQL_BUSCA_USUARIO_POR_ID, (id,))
         dados = cursor.fetchone()
         usuario = traduz_usuario(dados) if dados else None
         return usuario
 
-
 def traduz_usuario(tupla):
-    return usuario(tupla[1], tupla[2], tupla[3], tupla[4], id_usuario=tupla[0])
+    return usuario(tupla[0], tupla[1], tupla[2],tupla[3], tupla[4])
