@@ -3,8 +3,7 @@ import os
 
 from dao import ElementoDao, ClasseDao, CuriosidadesDao, UsuarioDao
 from flask_mysqldb import MySQL
-
-from models import elemento, classe, curiosidades, usuario
+from models import usuario, tipo_usuario, elemento, classe, curiosidades, perguntas, desafio, nivel
 
 app = Flask(__name__)
 app.secret_key = 'LP2'
