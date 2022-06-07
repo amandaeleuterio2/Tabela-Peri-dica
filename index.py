@@ -4,7 +4,7 @@ import os
 from dao import ElementoDao, ClasseDao, CuriosidadesDao, UsuarioDao
 from flask_mysqldb import MySQL
 
-from models import elemento, classe, curiosidades, usuario
+from models import Usuario, Tipo_usuario, Elemento, Classe, Curiosidades, Perguntas, Desafio, Nivel
 
 app = Flask(__name__)
 app.secret_key = 'LP2'
@@ -77,7 +77,7 @@ def criar():
     simbolo= request.form['simbolo']
     distribuicao_eletronica= request.form['distribuicao_eletronica']
     classe_id = request.form['classe']
-    elemento = elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None)
+    elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None)
 
     #lista.append(pet)
     elemento_dao.salvar(elemento)
@@ -86,7 +86,7 @@ def criar():
 @app.route('/criarclasse', methods = ['POST',])
 def criarclasse():
     nome_classe = request.form['nome_classe']
-    classe = classe(nome_classe)
+    classe = Classe(nome_classe)
 
     classe_dao.salvar(classe)
     return redirect('/lista_classes')
@@ -97,7 +97,7 @@ def criarcuriosidades():
     descricao = request.form['descricao']
     elemento_id = request.form['elemento']
 
-    curiosidades = curiosidades(tipo, descricao, elemento_id)
+    curiosidades = Curiosidades(tipo, descricao, elemento_id)
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
 
@@ -162,7 +162,7 @@ def atualizar():
     classe_id = request.form['classe']
     id = request.form['id']
 
-    elemento = elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None, id)
+    elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None, id)
     elemento_dao.salvar(elemento)
     return redirect('/lista_elementos')
 
@@ -170,7 +170,7 @@ def atualizar():
 def atualizarclasse():
     nome_classe = request.form['nome_classe']
     id = request.form['id']
-    classe = classe(nome_classe, id)
+    classe = Classe(nome_classe, id)
 
     classe_dao.salvar(classe)
     return redirect('/lista_classes')
@@ -182,7 +182,7 @@ def atualizarcuriosidades():
     elemento_id = request.form['elemento']
     id = request.form['id']
 
-    curiosidades = curiosidades(tipo, descricao, elemento_id, id)
+    curiosidades = Curiosidades(tipo, descricao, elemento_id, id)
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
 
