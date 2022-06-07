@@ -49,14 +49,6 @@ CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`curiosidade` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `tipo_usuario` (
-  `id_tipo_usuario` int NOT NULL,
-  `descricao_tipo_usuario` varchar(45) NOT NULL,
-  KEY `FK_tipo_usuario_usuario` (`id_tipo_usuario`),
-  CONSTRAINT `FK_tipo_usuario_usuario` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
-
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id_usuario` int NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -65,6 +57,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `senha` varchar(45) NOT NULL,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE IF NOT EXISTS `tipo_usuario` (
+  `id_tipo_usuario` int NOT NULL,
+  `descricao_tipo_usuario` varchar(45) NOT NULL,
+  KEY `FK_tipo_usuario_usuario` (`id_tipo_usuario`),
+  CONSTRAINT `FK_tipo_usuario_usuario` FOREIGN KEY (`id_tipo_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
 
 CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`nivel` (
   `id_nivel` INT NOT NULL AUTO_INCREMENT,
@@ -176,6 +176,19 @@ for curiosidade in cursor.fetchall():
     print(curiosidade[1])
 
 cursor.executemany(
+    'INSERT INTO `usuario` (`id_usuario`, `usuario`,`nome_usuario`, `email_usuario`, `senha`) VALUES (%s, %s, %s, %s, %s)',
+    [
+        (1,'amanda', 'Amanda Eleutério', 'amanda2@gmail.com', '54321'),
+        (2,'daiane', 'Daiane Cristina', 'daiane@gmail.com', '54321'),
+        (3,'tiago', 'Tiago Carlos', 'tiago@gmail.com', '54321'),
+    ])
+
+cursor.execute('select * from tabelaperiodica.usuario')
+print(' ------------ Usuário: ------------ ')
+for usuario in cursor.fetchall():
+    print(usuario[1])
+
+cursor.executemany(
     'INSERT INTO `tipo_usuario` (`id_tipo_usuario`, `descricao_tipo_usuario`) VALUES (%s, %s)',
     [
         (1, 'Professor'),
@@ -188,18 +201,6 @@ print(' ------------ Tipo de Usuário: ------------ ')
 for tipo_usuario in cursor.fetchall():
     print(tipo_usuario[1])
 
-cursor.executemany(
-    'INSERT INTO `usuario` (`id_usuario`, `usuario`,`nome_usuario`, `email_usuario`, `senha`) VALUES (%s, %s, %s, %s, %s)',
-    [
-        (1,'amanda', 'Amanda Eleutério', 'amanda2@gmail.com', '54321'),
-        (2,'daiane', 'Daiane Cristina', 'daiane@gmail.com', '54321'),
-        (3,'tiago', 'Tiago Carlos', 'tiago@gmail.com', '54321'),
-    ])
-
-cursor.execute('select * from tabelaperiodica.usuario')
-print(' ------------ Usuário: ------------ ')
-for usuario in cursor.fetchall():
-    print(usuario[1])
 
 cursor.executemany(
     'INSERT INTO `nivel` (`id_nivel`, `nome_nivel`) VALUES(%s, %s)',
