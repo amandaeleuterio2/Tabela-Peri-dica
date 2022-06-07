@@ -86,13 +86,7 @@ def criar():
     simbolo = request.form['simbolo']
     distribuicao_eletronica = request.form['distribuicao_eletronica']
     classe_id = request.form['classe']
-<<<<<<< HEAD
-    elemento = Elemento(nome_elemento, num_atomico, massa_atomica,
-                        estado_fisico, simbolo, distribuicao_eletronica, classe_id, None)
-=======
     elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None)
->>>>>>> 0d6bf74768248ec60eb9ff340c44b76f988c9d79
-
     # lista.append(pet)
     elemento_dao.salvar(elemento)
     return redirect('/lista_elementos')
@@ -184,13 +178,8 @@ def atualizar():
     distribuicao_eletronica = request.form['distribuicao_eletronica']
     classe_id = request.form['classe']
     id = request.form['id']
-
-<<<<<<< HEAD
-    elemento = Elemento(nome_elemento, num_atomico, massa_atomica,
-                        estado_fisico, simbolo, distribuicao_eletronica, classe_id, None, id)
-=======
     elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None, id)
->>>>>>> 0d6bf74768248ec60eb9ff340c44b76f988c9d79
+
     elemento_dao.salvar(elemento)
     return redirect('/lista_elementos')
 
