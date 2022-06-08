@@ -32,7 +32,7 @@ def lista_elementos():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect('/login?proxima=lista_elementos')
     lista = elemento_dao.listar()
-    return render_template('lista.html', titulo="Elementos Cadastrados", elementos = lista)
+    return render_template('lista_elementos.html', titulo="Elementos Cadastrados", elementos = lista)
 
 @app.route('/lista_classes')
 def lista_classes():
@@ -77,7 +77,7 @@ def criar():
     simbolo= request.form['simbolo']
     distribuicao_eletronica= request.form['distribuicao_eletronica']
     classe_id = request.form['classe']
-    elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica,classe_id, None)
+    elemento = Elemento(nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica, classe_id, None)
 
     #lista.append(pet)
     elemento_dao.salvar(elemento)
