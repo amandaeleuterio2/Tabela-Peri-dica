@@ -5,7 +5,7 @@ ddas regras de negócio das regras de acesso a banco de dados, implementda em li
 SQL_DELETA_ELEMENTO = 'delete from elemento where id_elemento = %s'
 SQL_CRIA_ELEMENTO = 'INSERT into elemento (nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica, classe) values (%s, %s, %s, %s, %s, %s, %s)'
 SQL_ATUALIZA_ELEMENTO = 'UPDATE elemento SET nome_elemento = %s, num_atomico = %s, massa_atomica = %s, estado_fisico = %s, simbolo = %s, distribuicao_eletronica = %s, classe = %s where id_elemento = %s'
-SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe;'
+SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe;'
 SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
 
 SQL_BUSCA_USUARIO_POR_ID = 'SELECT id_usuario, usuario, nome_usuario, email_usuario, senha FROM usuario where usuario=%s'
@@ -51,17 +51,17 @@ class ElementoDao:
         cursor = self.__db.connection.cursor()
         cursor.execute(SQL_ELEMENTO_POR_ID, (id,))
         tupla = cursor.fetchone()
-        return Elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
+        return Elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], id=tupla[0])
 
     def deletar(self, id):
         self.__db.connection.cursor().execute(SQL_DELETA_ELEMENTO, (id,))
         self.__db.connection.commit()
 
 
-def traduz_elementos(Elementos):
+def traduz_elementos(elementos):
     def cria_elemento_com_tupla(tupla):
-        return Elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
-    return list(map(cria_elemento_com_tupla, Elementos))
+        return Elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], id=tupla[0])
+    return list(map(cria_elemento_com_tupla, elementos))
 
 
 class ClasseDao:
