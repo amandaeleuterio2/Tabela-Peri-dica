@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tabela Periódica</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='sytle.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='/static/style.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400&display=swap" rel="stylesheet">
@@ -12,18 +12,19 @@
 <body>
 
         <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-            <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="btn btn-outline-warning btn-lg" href="{{ url_for('index') }}">Home</a>
                     </li>
                     <li class="nav-item active"> 
-                        <a class="btn btn-outline-warning btn-lg" href="{{ url_for('lista_elementos) }}" >Elementos</a>
+                        <a class="btn btn-outline-warning btn-lg" href="{{ url_for('lista_elementos') }}" >Elementos</a>
+                    </li>
+                    <li class="nav-item active"> 
+                        <a class="btn btn-outline-warning btn-lg" href="{{ url_for('roteiro_estudo') }}" >Roteiro de Estudo</a>
+                    </li>
+                    <li class="nav-item active"> 
+                        <a class="btn btn-outline-warning btn-lg" href="{{ url_for('lista_elementos') }}" >Quizz</a>
                     </li>
                     <li class="nav-item active">
                         <a class="btn btn-outline-warning btn-lg" href="{{ url_for('logout') }}" >Logout</a>

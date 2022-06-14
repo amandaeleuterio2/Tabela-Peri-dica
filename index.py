@@ -29,6 +29,12 @@ def index():
         return redirect('/login')
     return render_template('index.html')
 
+@app.route('/roteiro_estudo')
+def roteiro_estudo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    return render_template('roteiro_estudo.html')
+
 
 @app.route('/lista_elementos')
 def lista_elementos():
@@ -37,14 +43,18 @@ def lista_elementos():
     lista = elemento_dao.listar()
     return render_template('lista.html', titulo="Elementos Cadastrados", elementos=lista)
 
-
 @app.route('/lista_classes')
 def lista_classes():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect('/login?proxima=lista_classes')
     lista = classe_dao.listar()
     return render_template('lista_classes.html', titulo="Classes Cadastradas", classes=lista)
-
+@app.route('/roteiro_estudo')
+def lista_estudos():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=roteiro_estudo')
+    lista = classe_dao.listar()
+    return render_template('roteiro_estudo.html', titulo="Roteiro de Estudos", estudo=lista)
 
 @app.route('/lista_curiosidades')
 def lista_curiosidades():
@@ -228,6 +238,3 @@ def deletarcuriosidades(id):
 def upload_file(nome_arquivo):
     return send_from_directory(app.config['UPLOAD_PATH'], nome_arquivo)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
