@@ -29,6 +29,11 @@ def index():
         return redirect('/login')
     return render_template('index.html')
 
+@app.route('/roteiro_estudo')
+def roteiro_estudo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    return render_template('roteiro_estudo.html')
 
 @app.route('/lista_elementos')
 def lista_elementos():
