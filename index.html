@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html  lang='pt-br'>
+<html lang='pt-br'>
 <head>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.png/250px-Stylised_atom_with_three_Bohr_model_orbits_and_stylised_nucleus.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <header>
   <nav>
@@ -29,8 +28,22 @@
       <h2>H</h2>
       <p>Hidrogênio</p>
       <p>1008</p>
+      <button class="btn" onclick="openModal('dv-modal')">+</button>
     </section>
-
+    <div id="dv-modal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h1>Meu modal com HTML</h1>
+          </div>
+          <div class="modal-body">
+            <img src="{{url_for('imagens', filename='Hidrogênio.png')}}" class="imagem rounded mx-auto d-block">
+          </div>
+          <div class="modal-footer">
+            <button class="btn" onclick="closeModal('dv-modal')">Fechar</button>
+          </div>
+      </div>
+    </div>
+      
     <section class="col-hidden col-span16"></section>
 
     <section  class="gas-nobre">
@@ -903,5 +916,7 @@
       <i class="ri-whatsapp-line icon"></i>
     </div>
   </footer>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>

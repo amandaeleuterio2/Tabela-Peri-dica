@@ -186,7 +186,7 @@ main{
 
 /* GRID CELL */
 section{
-	height:7em;
+	height:12em;
 	background:var(--bg-preto);	
 	border:.125rem solid;
 	border-radius:.25rem;	
@@ -315,7 +315,6 @@ li:before{
 		section:hover{
 			transition:.2s;
 			transform:scale(1.5);
-			cursor:pointer;
 			z-index:2;
 		}
 		
@@ -402,4 +401,70 @@ a{
 	padding-top: 25px;
 }
 	
-	
+/* POPUPS */
+
+p {
+    text-align: center;
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 900px;
+    background-color: #eee;
+    padding: 10px;
+}
+
+.btn {
+    background-color: var(--nao-metal);
+    border: 2px solid var(--nao-metal);
+    cursor: pointer;
+    transition: background .3s;
+    border-radius: 5px;
+    color: #FFF;
+	text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--nao-metal);
+}
+
+.btn:active {
+    background-color: var(--nao-metal);;
+    color: var(--nao-metal);
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+}
+
+.modal-content {
+    margin: 0 auto;
+    margin-top: 3%;
+    max-width: 600px;
+    background-color: #eee;
+    padding: 0;
+    box-shadow: 0 0 2px #fff;
+}
+
+.modal-header h1{
+    font-weight: bold;
+    text-align: center;
+}
+
+.modal-header, .modal-body, .modal-footer{
+    padding: 10px;
+}
+
+.modal-header{
+    background-color: #ccc;
+}
+
+.modal-footer{
+    background-color: #ccc;
+}
