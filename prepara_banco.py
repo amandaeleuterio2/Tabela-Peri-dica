@@ -130,8 +130,8 @@ cursor.executemany(
     [
         (1, 'Hidrogênio', 1, '1', 'Gasoso', 'H', '1s¹', 8),
         (2, 'Hélio', 2, '4', 'Gasoso', 'He', '1s²', 6),
-        (4, 'Lítio', 3, '7', 'Sólido', 'Li', '[He]2s¹', 1),
-        (5, 'Berílio', 4, '9', 'Sólido', 'Be', '[He]2s²', 2),
+        (3, 'Lítio', 3, '7', 'Sólido', 'Li', '[He]2s¹', 1),
+        (4, 'Berílio', 4, '9', 'Sólido', 'Be', '[He]2s²', 2),
         (6, 'Boro', 5, '11', 'Sólido', 'B', '[He]2s²2p¹', 7),
         (7, 'Carbono', 6, '12', 'Sólido', 'C', '[He]2s²2p²', 8),
         (8, 'Nitrogênio', 7, '14', 'Gasoso', 'N', '[He]2s²2p³', 8),

@@ -38,7 +38,7 @@
                     <td>{{ elemento._simbolo }}</td>
                     <td>{{ elemento._distribuicao_eletronica }}</td>
                     <td>{{ elemento._nome_classe }}</td>
-                    <td><a class="btn btn-secondary" href="{{url_for('editar', id=elemento._id)}}">Editar</a> </td>
+                    <td><a class="btn btn-secondary" href="{{url_for('editar_elemento', id=elemento._id)}}">Editar</a> </td>
                     <td><a class="btn btn-danger" href="{{url_for('deletar', id=elemento._id)}}">Deletar</a> </td>
                 </tr>
             {% endfor %}

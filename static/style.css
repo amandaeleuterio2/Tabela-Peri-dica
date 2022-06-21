@@ -31,17 +31,12 @@ body {
   background: var(--bg-preto);
 }
 
-h2{
-  text-align: left;
-}
-
 ul .intro_li a{
   display: block;
   list-style-type: none;
 }
 
 .elemento{
-
   border-radius: 100rem;
   padding:1em;
   font-size:1.2rem;
@@ -55,10 +50,12 @@ ul .intro_li a{
   background-clip: content-box, border-box;
   box-shadow: 2px 1000px 1px linear-gradient(101deg, #78e4ff, #32b08d) inset;
 }
+
 .elemento:hover{
   box-shadow: none;
   color: white;
 }
+
 .tabela,
 .tabela thead{
   font-size: 1.0rem;
@@ -375,4 +372,56 @@ a {
 .icons-wrapper {
   text-align: center;
   padding-top: 25px;
+}
+
+.form-group{
+  text-align: left;
+}
+
+fieldset {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove (internal value);
+}
+
+legend{
+  font-size: 1.0rem;
+  text-align: left;
+  background-color: #78e4ff;
+  color: white;
+  padding: 5px 10px;
+  color: black;
+}
+
+label{
+  font-size: 1.0rem;
+}
+
+input {
+  margin: 5px;
+}
+
+.voltar{
+  border-radius: 100rem;
+  padding:1em;
+  font-size:1.2rem;
+  padding:.5rem 3rem;
+  color:#555555;
+  text-decoration: none;
+  border: solid 3px transparent;
+  border-radius: 4px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #78e4ff, #32b08d);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px linear-gradient(101deg, #78e4ff, #32b08d) inset;
+}
+
+.voltar:hover{
+  box-shadow: none;
+  color: white;
 }
