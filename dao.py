@@ -102,7 +102,7 @@ class ClasseDao:
 
 def traduz_classes(classes):
     def cria_classe_com_tupla(tupla):
-        return classes(tupla[1], id=tupla[0])
+        return Classe(tupla[1], id=tupla[0])
     return list(map(cria_classe_com_tupla, classes))
 
 
