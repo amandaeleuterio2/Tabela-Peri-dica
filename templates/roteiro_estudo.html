@@ -1,35 +1,55 @@
-{% extends "template.html" %}
-{% block conteudo %}
-<link rel="stylesheet" href="{{url_for('static', filename='bootstrap.mim.css')}}" />
-    <div class="jumbotron">
-        <h1 class="display-4">
-            {{ title }}
-            <h2>TUDO O QUE VOCÊ PRECISA SABER</h2>
-            <div class="intro">
-               
-               <ul><a href="#p1" >Resumo sobre a tabela Periódica</a></ul>
-               <ul><a href="#p2" >Origem e História</a></ul> 
-               <ul><a href="#p3" >Organização da Tabela Periódica</a></ul>
-               <ul><a href="#p4" >Propriedades Periódicas</a></ul>
-               <ul><a href="#p5" >Distribuição eletrônica</a></ul>
-               <ul><a href="#p6" >Camadas eletrônicas</a></ul>
-               <ul><a href="#p7" >Subníveis de Energia – Diagrama de Linus Pauling</a></ul>
-               <ul><a href="#p8" >Distribuição de todos os elementos da Tabela Periódica</a></ul>
-            </div>
-           <div>
-               <h3>Resumo sobre a tabela Periódica</h3>
-               <p id = "p1">A Tabela Periódica organiza todos os elementos já descobertos pelos seres humanos.</p>
-               <p>Os elementos químicos são colocados em ordem crescente de número atômico.</p>
-               <p>Nas suas colunas, chamadas de grupos, estão os elementos com propriedades físico-químicas semelhantes.</p>
-               <p>Nas suas linhas, chamadas de períodos, está indicada a camada eletrônica mais energética do elemento.</p>
-               <p>A Tabela tem várias subdivisões, diferenciando os elementos em metal ou ametal, representativos ou de transição, além de subdividi-los de acordo com sua distribuição eletrônica.</p>
-               <p>Tabela Periódica foi desenvolvida pelo químico russo Dmitri Mendeleev, em 1869, e foi sendo aprimorada ao longo dos anos até sua forma atual.</p>
-           </div>
-           <div>
-               <h3>Origem e História</h3>
-               <p id = "p2">
+{% extends "template.html" %} {% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+<div class="jumbotron">
+  <h1 class="display-4">{{ title }}</h1>
+</div>
+<h2>TUDO O QUE VOCÊ PRECISA SABER</h2>
+<div class="intro">
+  <ul>
+    <li class="intro_li"><a href="#p1">Resumo sobre a tabela Periódica</a></li>
+    <li class="intro_li"><a href="#p2">Origem e História</a></li>
+    <li class="intro_li"><a href="#p3">Organização da Tabela Periódica</a></li>
+    <li class="intro_li"><a href="#p4">Propriedades Periódicas</a></li>
+    <li class="intro_li"><a href="#p5">Distribuição eletrônica</a></li>
+    <li class="intro_li"><a href="#p6">Camadas eletrônicas</a></li>
+    <li class="intro_li">
+      <a href="#p7">Subníveis de Energia – Diagrama de Linus Pauling</a>
+    </li>
+    <li class="intro_li">
+      <a href="#p8">Distribuição de todos os elementos da Tabela Periódica</a>
+    </li>
+  </ul>
+</div>
+<div>
+  <h3>Resumo sobre a tabela Periódica</h3>
+  <p id="p1">
+    A Tabela Periódica organiza todos os elementos já descobertos pelos seres
+    humanos.
+  </p>
+  <p>
+    Os elementos químicos são colocados em ordem crescente de número atômico.
+  </p>
+  <p>
+    Nas suas colunas, chamadas de grupos, estão os elementos com propriedades
+    físico-químicas semelhantes.
+  </p>
+  <p>
+    Nas suas linhas, chamadas de períodos, está indicada a camada eletrônica
+    mais energética do elemento.
+  </p>
+  <p>
+    A Tabela tem várias subdivisões, diferenciando os elementos em metal ou
+    ametal, representativos ou de transição, além de subdividi-los de acordo com
+    sua distribuição eletrônica.
+  </p>
+  <p>
+    Tabela Periódica foi desenvolvida pelo químico russo Dmitri Mendeleev, em
+    1869, e foi sendo aprimorada ao longo dos anos até sua forma atual.
+  </p>
+</div>
+<div>
+  <h3>Origem e História</h3>
+  <p id="p2"></p>
+</div>
 
-               </p>
-           </div>
-
-            {% endblock %}
+{% endblock %}

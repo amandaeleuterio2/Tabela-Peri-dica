@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, request, redirect, session, flash
 import os
 
@@ -28,6 +27,12 @@ def index():
         return redirect('/login')
     lista = elemento_dao.listar()
     return render_template('index.html', elementos=lista)
+
+@app.route('/roteiro_estudo')
+def roteiro_estudo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    return render_template('roteiro_estudo.html')
 
 @app.route('/lista_elementos')
 def lista_elementos():
@@ -208,7 +213,7 @@ def upload_file(nome_arquivo):
     return send_from_directory(app.config['UPLOAD_PATH'],nome_arquivo)
 if __name__ == '__main__':
     app.run(debug=True)
-=======
+
 from flask import Flask, render_template, request, redirect, session, flash
 import os
 
@@ -417,4 +422,4 @@ def upload_file(nome_arquivo):
     return send_from_directory(app.config['UPLOAD_PATH'],nome_arquivo)
 if __name__ == '__main__':
     app.run(debug=True)
->>>>>>> f687e29a8c06d2840550f2a0e19c61bd120117f6
+
