@@ -6,7 +6,7 @@ SQL_DELETA_ELEMENTO = 'delete from elemento where id_elemento = %s'
 SQL_CRIA_ELEMENTO = 'INSERT into elemento (nome_elemento, num_atomico, massa_atomica, estado_fisico, simbolo, distribuicao_eletronica, classe) values (%s, %s, %s, %s, %s, %s, %s)'
 SQL_ATUALIZA_ELEMENTO = 'UPDATE elemento SET nome_elemento = %s, num_atomico = %s, massa_atomica = %s, estado_fisico = %s, simbolo = %s, distribuicao_eletronica = %s, classe = %s where id_elemento = %s'
 SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe;'
-SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from classe C inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
+SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
 
 SQL_BUSCA_USUARIO_POR_ID = 'SELECT id_usuario, usuario, nome_usuario, email_usuario, senha FROM usuario where usuario=%s'
 
@@ -30,12 +30,12 @@ class ElementoDao:
     def salvar(self, elemento):
         cursor = self.__db.connection.cursor()
 
-        if (elemento._id_elemento):
+        if (elemento._id):
             cursor.execute(SQL_ATUALIZA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica,
-                           elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe, elemento._id_elemento))
+                           elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe_id, elemento._id_elemento))
         else:
             cursor.execute(SQL_CRIA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica,
-                           elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe))
+                           elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe_id))
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()

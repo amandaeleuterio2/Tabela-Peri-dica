@@ -136,13 +136,13 @@ def logout():
     flash('Nenhum usuário logado!')
     return redirect('/login')
 
-@app.route('/editar/<int:id>')
-def editar(id):
+@app.route('/editar_elemento/<int:id>')
+def editar_elemento(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar')))
     elementos = elemento_dao.busca_por_id(id)
     lista = classe_dao.listar()
-    return render_template('editar.html',titulo="Editando Dados dos Elementos", elemento = elementos, classes = lista)
+    return render_template('editar_elemento.html',titulo="Editando Dados dos Elementos", elemento = elementos, classes = lista)
 
 @app.route('/editar_classes/<int:id>')
 def editar_classes(id):
@@ -158,8 +158,8 @@ def editar_curiosidades(id):
     curiosidade = curiosidades_dao.busca_por_id(id)
     return render_template('editar_curiosidades.html', titulo="Editando Dados das Curiosidades", curiosidades=curiosidade)
 
-@app.route('/atualizar', methods = ['POST',])
-def atualizar():
+@app.route('/atualizar_elemento', methods = ['POST',])
+def atualizar_elemento():
     nome_elemento = request.form['nome_elemento']
     num_atomico= request.form['num_atomico']
     massa_atomica= request.form['massa_atomica']
