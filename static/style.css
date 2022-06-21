@@ -40,6 +40,25 @@ ul .intro_li a{
   list-style-type: none;
 }
 
+.elemento{
+
+  border-radius: 100rem;
+  padding:1em;
+  font-size:1.2rem;
+  padding:.5rem 3rem;
+  color:#555555;
+  text-decoration: none;
+  border: solid 3px transparent;
+  border-radius: 4px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)), linear-gradient(101deg, #78e4ff, #32b08d);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  box-shadow: 2px 1000px 1px linear-gradient(101deg, #78e4ff, #32b08d) inset;
+}
+.elemento:hover{
+  box-shadow: none;
+  color: white;
+}
 /* FOREGROUND COLOR VARIABLES */
 #dificuldade-facil {
   color: var(--dificuldade-facil);
