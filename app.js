@@ -1,22 +1,26 @@
-function openModal(mn){
-    let modal = document.getElementById(mn);
-
-    if (typeof modal == 'undefined' || modal === null)
-        return;
-
-    modal.style.display = 'Block';
-    document.body.style.overflow = 'hidden';
+const switchModal = () => {
+    const modal = document.querySelector('.modal')
+    const actualStyle = modal.style.display
+    if(actualStyle == 'block') {
+        modal.style.display = 'none'
+    }
+    else {
+        modal.style.display = 'block'
+    }
 }
 
-function closeModal(mn) {
-    let modal = document.getElementById(mn);
+const btn = document.querySelector('.modalBtn')
+btn.addEventListener('click', switchModal)
 
-    if (typeof modal == 'undefined' || modal === null)
-        return;
-
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+window.onclick = function(event) {
+    const modal = document.querySelector('.modal')
+    if(event.target == modal) {
+        switchModal()
+    }
 }
 
+function fecharModal(){
+    document.getElementsByClassName('modal')[0].style.display = 'none';
+}
 
 

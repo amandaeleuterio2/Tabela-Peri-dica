@@ -8,8 +8,11 @@
 <header>
   <nav>
     <ul>
+      <a href="desafio.html">
+          <i class="ri-home-5-fill"></i>
+      </a>
       <li class="cabecalho"><a href="#">Página inicial</a></li>
-      <li class="cabecalho"><a href="#">Sobre</a></li>
+      <li class="cabecalho"><a href="#">Sobre</a></li></div>
       <li class="cabecalho"><a href="#">Contato</a></li>
       <li class="cabecalho"><a href="desafio.html">Desafios</a></li>
     </ul>
@@ -28,20 +31,16 @@
       <h2>H</h2>
       <p>Hidrogênio</p>
       <p>1008</p>
-      <button class="btn" onclick="openModal('dv-modal')">+</button>
+      
+      <button class="modalBtn">+</button>
     </section>
-    <div id="dv-modal" class="modal">
-      <div class="modal-content">
-          <div class="modal-header">
-            <h1>Meu modal com HTML</h1>
-          </div>
-          <div class="modal-body">
-            <img src="{{url_for('imagens', filename='Hidrogênio.png')}}" class="imagem rounded mx-auto d-block">
-          </div>
-          <div class="modal-footer">
-            <button class="btn" onclick="closeModal('dv-modal')">Fechar</button>
-          </div>
-      </div>
+    <div class="modal">
+      <div class="content">
+        <h1 class="title">Olá, eu sou um modal</h1>
+        <img src="imagens/Hidrogênio.png">
+        <p class="text">Você pode me fechar clicando neste botão.</p>
+        <button class="btn" onclick="fecharModal()">Fechar</button>
+      </div>  
     </div>
       
     <section class="col-hidden col-span16"></section>
@@ -906,6 +905,7 @@
       <li class="actinidio">Actinídios</li>
     </ul>
 </div>
+<i class="fa-solid fa-rectangle-vertical-history"></i>
 <br>
 <hr class= "linha">
 </main>
