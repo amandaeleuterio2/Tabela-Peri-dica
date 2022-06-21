@@ -55,12 +55,12 @@ def lista_curiosidades():
     lista = curiosidades_dao.listar()
     return render_template('lista_curiosidades.html', titulo="Curiosidades Cadastradas", curiosidades=lista)
 
-@app.route('/novo')
-def novo():
+@app.route('/novo_elemento')
+def novo_elemento():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect('/login?proxima=novo')
+        return redirect('/login?proxima=novo_elemento')
     lista = classe_dao.listar()
-    return render_template('novo.html', titulo="Cadastrando novo elemento", classes=lista)
+    return render_template('novo_elemento.html', titulo="Cadastrando novo elemento", classes=lista)
 
 @app.route('/nova_classe')
 def novaclasse():
@@ -75,7 +75,7 @@ def nova_curiosidade():
     lista = elemento_dao.listar()
     return render_template('nova_curiosidade.html', titulo="Cadastrando nova curiosidade", elementos = lista)
 
-@app.route('/criar', methods = ['POST',])
+@app.route('/criar_elemento', methods = ['POST',])
 def criar():
     nome_elemento = request.form['nome_elemento']
     num_atomico= request.form['num_atomico']
