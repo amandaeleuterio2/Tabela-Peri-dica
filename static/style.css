@@ -59,6 +59,12 @@ ul .intro_li a{
   box-shadow: none;
   color: white;
 }
+.tabela,
+.tabela thead{
+  font-size: 1.0rem;
+  text-align: center;
+  border-radius: 0.4rem;
+}
 /* FOREGROUND COLOR VARIABLES */
 #dificuldade-facil {
   color: var(--dificuldade-facil);
