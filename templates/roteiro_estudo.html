@@ -1,55 +1,110 @@
-{% extends "template.html" %} {% block conteudo %}
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
-<div class="jumbotron">
-  <h1 class="display-4">{{ title }}</h1>
-</div>
-<h2>TUDO O QUE VOCÊ PRECISA SABER</h2>
-<div class="intro">
-  <ul>
-    <li class="intro_li"><a href="#p1">Resumo sobre a tabela Periódica</a></li>
-    <li class="intro_li"><a href="#p2">Origem e História</a></li>
-    <li class="intro_li"><a href="#p3">Organização da Tabela Periódica</a></li>
-    <li class="intro_li"><a href="#p4">Propriedades Periódicas</a></li>
-    <li class="intro_li"><a href="#p5">Distribuição eletrônica</a></li>
-    <li class="intro_li"><a href="#p6">Camadas eletrônicas</a></li>
-    <li class="intro_li">
-      <a href="#p7">Subníveis de Energia – Diagrama de Linus Pauling</a>
-    </li>
-    <li class="intro_li">
-      <a href="#p8">Distribuição de todos os elementos da Tabela Periódica</a>
-    </li>
-  </ul>
-</div>
-<div>
-  <h3>Resumo sobre a tabela Periódica</h3>
-  <p id="p1">
-    A Tabela Periódica organiza todos os elementos já descobertos pelos seres
-    humanos.
-  </p>
-  <p>
-    Os elementos químicos são colocados em ordem crescente de número atômico.
-  </p>
-  <p>
-    Nas suas colunas, chamadas de grupos, estão os elementos com propriedades
-    físico-químicas semelhantes.
-  </p>
-  <p>
-    Nas suas linhas, chamadas de períodos, está indicada a camada eletrônica
-    mais energética do elemento.
-  </p>
-  <p>
-    A Tabela tem várias subdivisões, diferenciando os elementos em metal ou
-    ametal, representativos ou de transição, além de subdividi-los de acordo com
-    sua distribuição eletrônica.
-  </p>
-  <p>
-    Tabela Periódica foi desenvolvida pelo químico russo Dmitri Mendeleev, em
-    1869, e foi sendo aprimorada ao longo dos anos até sua forma atual.
-  </p>
-</div>
-<div>
-  <h3>Origem e História</h3>
-  <p id="p2"></p>
-</div>
+{% extends "template.html" %}
+{% block conteudo %}
+<link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}" />
+<link href='https://css.gg/file-document.css' rel='stylesheet'>
+    <div class="jumbotron">
+        <h1 class="display-4">
+            {{ title }}
+        </h1>
+    </div>
+        <h2>TUDO O QUE VOCÊ PRECISA SABER
+           
+        </h2>
+            <div class="intro">
+               
+               <ul >
+                
+                   <li class = "cabecalho"><a href="#p1" >Resumo sobre a tabela Periódica</a></li>
+                   <li class = "cabecalho"><a href="#p2" >Origem e História</a></li>
+                   <li class = "cabecalho"><a href="#p3" >Organização da Tabela Periódica</a></li>
+                   <li class = "cabecalho"><a href="#p4" >Propriedades Periódicas</a></li>
+                   <li class = "cabecalho"><a href="#p5" >Distribuição eletrônica</a></li>
+                   <li class = "cabecalho"><a href="#p6" >Camadas eletrônicas</a></li>
+                   <li class = "cabecalho"><a href="#p7" >Subníveis de Energia – Diagrama de Linus Pauling</a></li>
+                   <li class = "cabecalho"><a href="#p8" >Distribuição de todos os elementos da Tabela Periódica</a></li>
+                   </ul>
+            </div>
+           <div class="cont">
+               <h3 id = "p1">Resumo sobre a tabela Periódica</h3>
+               <p >A Tabela Periódica organiza todos os elementos já descobertos pelos seres humanos.</p>
+               <p>Os elementos químicos são colocados em ordem crescente de número atômico.</p>
+               <p>Nas suas colunas, chamadas de grupos, estão os elementos com propriedades físico-químicas semelhantes.</p>
+               <p>Nas suas linhas, chamadas de períodos, está indicada a camada eletrônica mais energética do elemento.</p>
+               <p>A Tabela tem várias subdivisões, diferenciando os elementos em metal ou ametal, representativos ou de transição, além de subdividi-los de acordo com sua distribuição eletrônica.</p>
+               <p>Tabela Periódica foi desenvolvida pelo químico russo Dmitri Mendeleev, em 1869, e foi sendo aprimorada ao longo dos anos até sua forma atual.</p>
+               <p></p>
+    
+           </div>
+           <div class="cont">
+               <h3 id = "p2">Origem e História</h3>
+               <p >Embora a criação da Tabela Periódica seja creditada a Dmitri Mendeleev, o químico russo foi bastante influenciado por diversos cientistas.</p>
+               <p>Antoine-Laurent Lavoisier, na sua célebre obra Tratado elementar de química, de 1789, listava 33 elementos, gases, metais, não metais e elementos terrosos. Posteriormente, Lavoisier retirou alguns desses elementos, classificando-os como compostos, assim como retirou a luz, que não fez mais parte dessa classificação. Contudo, 25 dos elementos de Lavoisier se encontram na Tabela Periódica atual.</p>
+               <p>Posteriormente, Johann Wolfgang Döbereiner apresentou, em 1817, a chamada lei das tríades, em que agrupava trios de elementos de acordo com suas propriedades químicas, de modo que o elemento do meio tivesse uma massa atômica que fosse aproximadamente a média aritmética dos outros dois.</p>
+               <p>Em 1862, Alexandre-Émile Béguyer de Chancourtois desenvolveu a classificação tridimensional conhecida como parafuso telúrico, em que organizava os elementos em uma hélice e em ordem crescente de massa atômica. Fato é que Chancourtois percebeu propriedades periódicas em seu agrupamento, porém o geólogo teve dificuldade na difusão de suas ideias, não só pelo fato do modelo ser tridimensional, mas também por sua linguagem ser diferente da comumente utilizada pelos químicos.</p>
+               <p>A lei das oitavas surgiu posteriormente, proposta por John Newlands, em 1863. Newlands organizou os elementos de propriedades semelhantes em 11 grupos, e, além disso, tais propriedades se repetiam após oito elementos. O nome oitavas faz referência às oitavas musicais.</p>
+               <p>Embora, inicialmente, seu trabalho tenha sido considerado vago e confuso, posteriormente Newlands foi premiado por ele, em 1887, ao receber a Medalha Davy da Real Sociedade de Londres. Contudo, tais modelos sempre apresentavam lacunas e não conseguiam abranger todos os elementos já conhecidos.</p>
+               <p>Foi então que, em 1860, no Congresso de Karlsruhe, 129 químicos se reuniram para padronizar formas de nomear e conceituar os conteúdos de pesquisas químicas, diferenciando termos como átomo e molécula. Stanislao Cannizzaro, um dos palestrantes do congresso, apresentou um estudo sobre um novo sistema de massas atômicas, entregando cópias de seu artigo aos presentes.</p>
+               <p>Dmitri Mendeleev e Julius Lothar Meyer estavam entre os presentes, e então receberam uma cópia do trabalho de Cannizzaro. Por meio das ideias deste, Meyer desenvolveu uma Tabela com 28 dos 56 elementos já conhecidos e, em 1868, trabalhou em uma Tabela Periódica que incluía todos os elementos químicos conhecidos. Em 1869, contudo, Mendeleev publicou então sua Tabela Periódica.</p>
+               <p>Sem dúvida alguma, a proximidade das publicações gerou conflitos, tanto que, em 1892, a Real Sociedade de Londres premiou ambos com a Medalha Davy. Contudo, a Tabela de Mendeleev vigorou, pois previa a existência de elementos ainda não descobertos, deixando espaços vazios, e, além disso, ao incluir elementos conhecidos e desconhecidos, levava em consideração diversas propriedades físicas e químicas, podendo, inclusive, antever quais seriam as propriedades dos elementos a serem descobertos.</p>
+               <p>Contudo, a Tabela Periódica de Mendeleev é um instrumento de pesquisa e aberta a constantes revisões. O próprio Mendeleev realizou alterações posteriormente ao incluir um oitavo grupo, que ele chamou de elementos de transição, por conta de uma quebra de periodicidade acarretada pela inclusão do ferro. William Ramsay, no final do século XIX, acrescentou à Tabela os gases nobres, enquanto Alfred Werner deu a ela uma cara mais próxima da que conhecemos ao incluir o bloco d, formando uma série de transição.</p>
+               <p>Os trabalhos de Henry Moseley, em 1913, rearranjaram a Tabela Periódica, uma vez que ele enunciou a lei periódica, afirmando que “as propriedades físicas e químicas dos elementos são funções periódicas de seus números atômicos”. Criou-se então o conceito de número atômico, em que cada elemento teria seu próprio número, fazendo com que a Tabela agora fosse organizada em ordem crescente de números atômicos.</p>
+               <p>Os trabalhos de Moseley tiraram as últimas lacunas de Mendeleev. Após isso, na década de 1950, McMillan e Seaborg descobriram os elementos transurânicos, aqueles com número atômico maior que 92, reconfigurando a Tabela Periódica e, assim, incluindo os lantanídeos e actinídeos.</p>
+               <p>Desde então, a Tabela Periódica sofre pequenas inclusões de alguns elementos que vão sendo descobertos, sendo o último a ser incluído o elemento 118, oganessônio (Og), com os elementos tenesso (Ts), moscóvio (Mc) e nihônio (Nh).</p>
+               <p>Quem determina a estrutura oficial e padrão da Tabela Periódica atualmente é a Iupac, assim como é esse órgão que regulariza as mudanças que ela deve sofrer</p>
+               <p></p>
+           </div>
+           <div class="cont">
+               <h3 id = "p3">Organização da Tabela Periódica</h3>
+               <p>A Tabela Periódica tem grande utilidade porque consegue estabelecer padrões de organização para todos os elementos químicos descobertos pela humanidade até então. Atualmente são 118 elementos químicos, os quais são dispostos na Tabela em ordem crescente de números atômicos, da esquerda para a direita, iniciando no hidrogênio (número atômico igual a 1) e terminando no recém-incluído oganessônio (número atômico igual a 118).</p>
+               <p>Contudo, a grande vantagem da Tabela Periódica é colocar elementos de propriedades físico-químicas semelhantes na mesma coluna. As colunas da Tabela podem ser chamadas de grupos ou família. Já as linhas, que dispõem os elementos em ordem crescente de número atômico, são chamadas de períodos.</p>
+               <p><b>Famílias ou grupos</b> </p>
+               <p>A Tabela Periódica conta com 18 linhas verticais (ou colunas), as quais podem ser chamadas de famílias ou grupos. Em cada coluna, estão dispostos elementos de propriedades físico-químicas semelhantes. A única exceção é o elemento químico hidrogênio, que, apesar de estar no grupo 1, não possui propriedades semelhantes aos demais.</p>
+               <p>Podemos citar os elementos de uma família apenas falando seu número, como família (ou grupo) 1 ou família (ou grupo) 2, ou então citando o nome do seu primeiro elemento, como família (ou grupo) do ferro, família (ou grupo) do carbono.</p>
+               <p></p>
+               <table>
+                   <thead>
+                       <tr>
+                           <th>Grupo</th>
+                           <th>Nome</th>
+                       </tr>
+                       
+                   </thead>
+                   <tbody>
+                    <tr>
+                        <td>Grupo 1</td>
+                        <td>Metais alcalinos</td>
+                    </tr>
+                    <tr>
+                     <td>Grupo 2</td>
+                     <td>Metais alcalino-terrosos ou alcalinos terrosos </td>
+                 </tr>
+                 <tr>
+                     <td>Grupo 15</td>
+                     <td>Pinictogênios </td>
+                 </tr>
+                 <tr>
+                     <td>Grupo 16</td>
+                     <td>Calcogênios </td>
+                 </tr>
+                 <tr>
+                     <td>Grupo 17</td>
+                     <td>Halogênios </td>
+                 </tr>
+                 <tr>
+                     <td>Grupo 18</td>
+                     <td>Gases nobres </td>
+                 </tr>
+                   </tbody>
+               </table>
 
-{% endblock %}
+           </div>
+           <div class="cont">
+               <h3 id = "p4"> Propriedades Periódicas</h3>
+               <p>Uma das grandes vantagens da Tabela Periódica são as propriedades periódicas. Quando organizamos os elementos tal como fizeram Mendeleev ou Moseley, percebemos que ocorre uma periodicidade dessas propriedades, o que quer dizer que elementos com propriedades semelhantes se repetem regularmente.</p>
+               <p></p>
+
+                          
+
+           </div>
+
+            {% endblock %}
