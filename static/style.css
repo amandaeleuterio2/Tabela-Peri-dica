@@ -82,7 +82,7 @@
 
   .tabela,
   .tabela thead {
-    margin:auto;
+    margin: auto;
     font-size: 1rem;
     text-align: justify;
     border-radius: 1.9rem;
@@ -91,7 +91,7 @@
     letter-spacing: 1px;
   }
   .tabela th,
-  .tabela td{
+  .tabela td {
     border: 1px solid rgb(190, 190, 190);
     padding: 5px 10px;
     text-align: center;
@@ -434,7 +434,7 @@
 
   label {
     font-size: 1rem;
-    margin:auto;
+    margin: auto;
   }
 
   input,
@@ -443,7 +443,7 @@
     font: 1em/1 'Montserrat', sans-serif;
   }
 
-  textarea{
+  textarea {
     margin-top: 0.7rem;
     letter-spacing: 1px;
     font: 1em/1 'Montserrat', sans-serif;

@@ -8,6 +8,10 @@ SQL_ATUALIZA_ELEMENTO = 'UPDATE elemento SET nome_elemento = %s, num_atomico = %
 SQL_BUSCA_ELEMENTO = 'SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe;'
 SQL_ELEMENTO_POR_ID = ' SELECT E.id_elemento, E.nome_elemento, E.num_atomico, E.massa_atomica, E.estado_fisico, E.simbolo, E.distribuicao_eletronica, E.classe, C.nome_classe as classe from elemento E inner join classe C on E.classe = C.id_classe where E.id_elemento = %s'
 
+SQL_DELETA_USUARIO = 'delete from usuario where id_usuario = %s'
+SQL_CRIA_USUARIO = 'INSERT into usuario (usuario, nome_usuario, email_usuario, senha) values (%s, %s, %s, %s)'
+SQL_ATUALIZA_USUARIO = 'UPDATE usuario SET usuario = %s, nome_usuario = %s, email_usuario = %s, senha = %s where id_usuario = %s'
+SQL_BUSCA_USUARIO = 'SELECT id_usuario, usuario, nome_usuario, email_usuario, senha from usuario'
 SQL_BUSCA_USUARIO_POR_ID = 'SELECT id_usuario, usuario, nome_usuario, email_usuario, senha FROM usuario where usuario=%s'
 
 SQL_ATUALIZA_CLASSE = 'UPDATE classe SET nome_classe = %s where id_classe = %s'
@@ -141,6 +145,24 @@ def traduz_curiosidades(curiosidades):
 class UsuarioDao:
     def __init__(self, db):
         self.__db = db
+
+    def salvar(self, usuario):
+        cursor = self.__db.connection.cursor()
+
+        if (usuario._id):
+            cursor.execute(SQL_ATUALIZA_USUARIO, (usuario._usuario, usuario._nome, usuario._email, usuario._senha, usuario._id))
+        else:
+            cursor.execute(SQL_CRIA_USUARIO, (usuario._usuario, usuario._nome, usuario._email, usuario._senha))
+            cursor._id = cursor.lastrowid
+
+        self.__db.connection.commit()
+        return usuario
+
+    def listar(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_USUARIO)
+        usuarios = traduz_usuario(cursor.fetchall())
+        return usuarios
 
     def busca_por_id(self, id):
         cursor = self.__db.connection.cursor()

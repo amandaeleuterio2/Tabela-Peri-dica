@@ -26,28 +26,19 @@
               </ul>
           {% endif %}
       {% endwith %}
-    <form class="form-signin" method="POST" action="/autenticar">
+    <form class="form-signin" method="POST" action="/cadastrar">
       <input type="hidden" name="proxima" value="{{proxima}}">
       <img class="mb-4" src="/static/tabela.png" alt="" >
       <h1 class="h3 mb-3 font-weight-normal">Cadastre-se:</h1>
-      <label for="inputEmail" class="sr-only">Usuário</label>
-      <input type="text" id="inputEmail" class="form-control" placeholder="Usuário" name="usuario" required autofocus>
+      <label for="inputUsuario" class="sr-only">Usuário</label>
+      <input type="text" id="inputUsuario" class="form-control" placeholder="Digite o nome de Usuário" name="usuario" required autofocus>
+      <label for="inputNome" class="sr-only">Nome</label>
+      <input type="text" id="inputNome" class="form-control" placeholder="Digite o seu nome" name="nome" required autofocus>
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Digite o seu email" name="email" required autofocus>
       <label for="inputPassword" class="sr-only">Senha</label>
       <input type="password" id="inputPassword" class="form-control" placeholder="Senha" name="senha" required>
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <div>
-        <p>Ainda não possui conta?
-          <a href="cadastrar.html">
-            <b>Cadastre-se!
-            </b>
-          </a>
-        </p>
-      </div>
-      <button class="elemento" type="submit">Entrar</button>
+      <button class="elemento" type="submit">Salvar</button>
       <p class="mt-5 mb-3 text-muted">&copy; Tabela Periódica - Amanda, Daiane e Tiago - 2022</p>
     </form>
   </body>

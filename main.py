@@ -115,6 +115,19 @@ def login():
         proxima = ''
     return render_template('login.html', proxima = proxima)
 
+@app.route('/cadastrar')
+def cadastrar():
+    usuario = request.form['usuario']
+    nome = request.form['nome']
+    email = request.form['email']
+    senha = request.form['senha']
+
+
+    cadastrar = Usuario(usuario, nome, email, senha)
+    usuario_dao.salvar(cadastrar)
+    flash('Usuário cadastrado! Faça o login')
+    return redirect('/login')
+
 @app.route('/autenticar', methods = ['POST',])
 def autenticar():
     usuario = usuario_dao.busca_por_id(request.form['usuario'])
@@ -127,7 +140,7 @@ def autenticar():
                 return redirect('/')
             else:
                 return redirect('/{}'.format(proxima_pagina))
-    flash('Não logado, tente novamente!')
+    flash('Não logado ou usuário não cadastrado, tente novamente!')
     return redirect('/login')
 
 @app.route('/logout')
