@@ -29,11 +29,12 @@ class Classe():
         self._nome_classe=nome_classe
 
 class Curiosidades():
-    def __init__(self, tipo, descricao, elemento, id=None):
+    def __init__(self, tipo, descricao, elemento_id, nome_elemento, id=None):
         self._id=id
         self._tipo=tipo
         self._descricao=descricao
-        self._elemento=elemento
+        self._elemento_id=elemento_id
+        self._nome_elemento = nome_elemento
 
 class Perguntas():
     def __init__(self, nome_pergunta, descricao, resposta, desafio_id, id=None):
