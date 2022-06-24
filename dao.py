@@ -14,7 +14,7 @@ SQL_ATUALIZA_CLASSE = 'UPDATE classe SET nome_classe = %s where id_classe = %s'
 SQL_CRIA_CLASSE = 'INSERT into classe (nome_classe) values (%s)'
 SQL_BUSCA_CLASSE = 'SELECT id_classe, nome_classe from classe'
 SQL_DELETA_CLASSE = 'delete from classe where id_classe = %s'
-SQL_CLASSE_POR_ID = 'SELECT id_classe, nome_classe from classe where id_classe = %s'
+SQL_CLASSE_POR_ID = 'SELECT id_classe, nome_classe from classe where id_classe=%s'
 
 SQL_ATUALIZA_CURIOSIDADE = 'UPDATE curiosidade SET tipo = %s, descricao = %s, elemento = %s where id_curiosidade = %s'
 SQL_CRIA_CURIOSIDADE = 'INSERT into curiosidade (tipo, descricao, elemento) values (%s, %s, %s)'
@@ -62,7 +62,6 @@ def traduz_elementos(elementos):
         return Elemento(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], id=tupla[0])
     return list(map(cria_elemento_com_tupla, elementos))
 
-
 class ClasseDao:
     def __init__(self, db):
         self.__db = db
@@ -72,6 +71,7 @@ class ClasseDao:
 
         if (classe._id):
             cursor.execute(SQL_ATUALIZA_CLASSE, (classe._nome_classe, classe._id))
+
         else:
             cursor.execute(SQL_CRIA_CLASSE, (classe._nome_classe))
             cursor._id = cursor.lastrowid
@@ -100,7 +100,6 @@ def traduz_classes(classes):
         return Classe(tupla[1], id=tupla[0])
     return list(map(cria_classe_com_tupla, classes))
 
-
 class CuriosidadesDao:
     def __init__(self, db):
         self.__db = db
@@ -109,11 +108,10 @@ class CuriosidadesDao:
         cursor = self.__db.connection.cursor()
 
         if (curiosidade._id):
-            cursor.execute(SQL_ATUALIZA_CURIOSIDADE, (curiosidade._tipo,
-                           curiosidade._descricao, curiosidade._elemento, curiosidade._id))
+            cursor.execute(SQL_ATUALIZA_CURIOSIDADE, (curiosidade._tipo, curiosidade._descricao, curiosidade._elemento_id, curiosidade._id))
+
         else:
-            cursor.execute(SQL_CRIA_CURIOSIDADE, (curiosidade._tipo,
-                           curiosidade._descricao, curiosidade._elemento))
+            cursor.execute(SQL_CRIA_CURIOSIDADE, (curiosidade._tipo, curiosidade._descricao, curiosidade._elemento_id))
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()
@@ -129,18 +127,16 @@ class CuriosidadesDao:
         cursor = self.__db.connection.cursor()
         cursor.execute(SQL_CURIOSIDADE_POR_ID, (id,))
         tupla = cursor.fetchone()
-        return Curiosidades(tupla[1], tupla[2], tupla[3], id=tupla[0])
+        return Curiosidades(tupla[1], tupla[2], tupla[3], tupla[4], id=tupla[0])
 
     def deletar(self, id):
         self.__db.connection.cursor().execute(SQL_DELETA_CURIOSIDADE, (id,))
         self.__db.connection.commit()
 
-
 def traduz_curiosidades(curiosidades):
     def cria_curiosidade_com_tupla(tupla):
-        return curiosidades(tupla[1], tupla[2], tupla[3], id=tupla[0])
+        return Curiosidades(tupla[1], tupla[2], tupla[3], tupla[4], id=tupla[0])
     return list(map(cria_curiosidade_com_tupla, curiosidades))
-
 
 class UsuarioDao:
     def __init__(self, db):

@@ -92,19 +92,19 @@ def criar():
 
 @app.route('/criar_classe', methods = ['POST',])
 def criar_classe():
-    nome_classe= request.form['nome_classe']
+    nome_classe = request.form['nome_classe']
+
     classe = Classe(nome_classe)
     classe_dao.salvar(classe)
     return redirect('/lista_classes')
 
-
-@app.route('/criarcuriosidades', methods = ['POST',])
+@app.route('/criar_curiosidades', methods = ['POST',])
 def criarcuriosidades():
     tipo = request.form['tipo']
     descricao = request.form['descricao']
     elemento_id = request.form['elemento']
 
-    curiosidades = Curiosidades(tipo, descricao, elemento_id)
+    curiosidades = Curiosidades(tipo, descricao, elemento_id, None)
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
 
@@ -144,19 +144,20 @@ def editar_elemento(id):
     lista = classe_dao.listar()
     return render_template('editar_elemento.html',titulo="Editando Dados dos Elementos", elemento = elementos, classes = lista)
 
-@app.route('/editar_classes/<int:id>')
-def editar_classes(id):
+@app.route('/editar_classe/<int:id>')
+def editar_classe(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('editar_classes')))
+        return redirect(url_for('login', proxima=url_for('editar_classe')))
     classe = classe_dao.busca_por_id(id)
-    return render_template('editar_classes.html', titulo="Editando Dados das Classes", classes=classe)
+    return render_template('editar_classe.html', titulo="Editando Dados do Cliente", classe=classe)
 
 @app.route('/editar_curiosidades/<int:id>')
 def editar_curiosidades(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('editar_curiosidades')))
     curiosidade = curiosidades_dao.busca_por_id(id)
-    return render_template('editar_curiosidades.html', titulo="Editando Dados das Curiosidades", curiosidades=curiosidade)
+    lista = elemento_dao.listar()
+    return render_template('editar_curiosidades.html', titulo="Editando Dados das Curiosidades", curiosidade=curiosidade, elementos=lista)
 
 @app.route('/atualizar_elemento', methods = ['POST',])
 def atualizar_elemento():
@@ -173,8 +174,8 @@ def atualizar_elemento():
     elemento_dao.salvar(elemento)
     return redirect('/lista_elementos')
 
-@app.route('/atualizarclasse', methods = ['POST',])
-def atualizarclasse():
+@app.route('/atualizar_classe', methods = ['POST',])
+def atualizar_classe():
     nome_classe = request.form['nome_classe']
     id = request.form['id']
     classe = Classe(nome_classe, id)
@@ -182,14 +183,14 @@ def atualizarclasse():
     classe_dao.salvar(classe)
     return redirect('/lista_classes')
 
-@app.route('/atualizarcuriosidades', methods = ['POST',])
-def atualizarcuriosidades():
+@app.route('/atualizar_curiosidades', methods = ['POST',])
+def atualizar_curiosidades():
     tipo = request.form['tipo']
     descricao = request.form['descricao']
     elemento_id = request.form['elemento']
     id = request.form['id']
 
-    curiosidades = Curiosidades(tipo, descricao, elemento_id, id)
+    curiosidades = Curiosidades(tipo, descricao, elemento_id, None, id)
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
 
@@ -203,8 +204,8 @@ def deletar_classes(id):
     classe_dao.deletar(id)
     return redirect('/lista_classes')
 
-@app.route('/deletarcuriosidades/<int:id>')
-def deletarcuriosidades(id):
+@app.route('/deletar_curiosidades/<int:id>')
+def deletar_curiosidades(id):
     curiosidades_dao.deletar(id)
     return redirect('/lista_curiosidades')
 
