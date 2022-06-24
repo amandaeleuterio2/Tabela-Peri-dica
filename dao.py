@@ -14,7 +14,7 @@ SQL_ATUALIZA_CLASSE = 'UPDATE classe SET nome_classe = %s where id_classe = %s'
 SQL_CRIA_CLASSE = 'INSERT into classe (nome_classe) values (%s)'
 SQL_BUSCA_CLASSE = 'SELECT id_classe, nome_classe from classe'
 SQL_DELETA_CLASSE = 'delete from classe where id_classe = %s'
-SQL_CLASSE_POR_ID = 'SELECT id_classe, nome_classe from classe where id_clase = %s'
+SQL_CLASSE_POR_ID = 'SELECT id_classe, nome_classe from classe where id_classe = %s'
 
 SQL_ATUALIZA_CURIOSIDADE = 'UPDATE curiosidade SET tipo = %s, descricao = %s, elemento = %s where id_curiosidade = %s'
 SQL_CRIA_CURIOSIDADE = 'INSERT into curiosidade (tipo, descricao, elemento) values (%s, %s, %s)'
@@ -31,8 +31,7 @@ class ElementoDao:
         cursor = self.__db.connection.cursor()
 
         if (elemento._id):
-            cursor.execute(SQL_ATUALIZA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica,
-                           elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe_id, elemento._id_elemento))
+            cursor.execute(SQL_ATUALIZA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica,elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe_id, elemento._id))
         else:
             cursor.execute(SQL_CRIA_ELEMENTO, (elemento._nome_elemento, elemento._num_atomico, elemento._massa_atomica,
                            elemento._estado_fisico, elemento._simbolo, elemento._distribuicao_eletronica, elemento._classe_id))
@@ -71,13 +70,10 @@ class ClasseDao:
     def salvar(self, classe):
         cursor = self.__db.connection.cursor()
 
-        if (classe._id_classe):
-            cursor.execute(SQL_ATUALIZA_CLASSE, (
-                classe._nome_classe, classe._id_classe))
-
+        if (classe._id):
+            cursor.execute(SQL_ATUALIZA_CLASSE, (classe._nome_classe, classe._id))
         else:
-            cursor.execute(SQL_CRIA_CLASSE, (
-                classe._nome_classe))
+            cursor.execute(SQL_CRIA_CLASSE, (classe._nome_classe))
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()
@@ -98,7 +94,6 @@ class ClasseDao:
     def deletar(self, id):
         self.__db.connection.cursor().execute(SQL_DELETA_CLASSE, (id,))
         self.__db.connection.commit()
-
 
 def traduz_classes(classes):
     def cria_classe_com_tupla(tupla):

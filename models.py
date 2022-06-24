@@ -21,7 +21,7 @@ class Elemento():
         self._simbolo=simbolo
         self._distribuicao_eletronica=distribuicao_eletronica
         self._classe_id=classe_id
-        self.nome_classe=nome_classe
+        self._nome_classe=nome_classe
 
 class Classe():
     def __init__(self, nome_classe, id=None):
