@@ -151,7 +151,32 @@ cursor.executemany(
         (22, 'Escândio', 21, '45', 'Sólido', 'Sc', '[Ar]3d¹4s²', 3),
         (23, 'Titânio', 22, '48', 'Sólido', 'Ti', '[Ar]3d²4s²', 3),
         (24, 'Vanádio', 23, '51', 'Sólido', 'V', '[Ar]3d³4s²', 3),
-        (25, 'Crômio', 24, '52', 'Sólido', 'Cr', '[Ar]3d⁵4s¹', 3)
+        (25, 'Crômio', 24, '52', 'Sólido', 'Cr', '[Ar]3d⁵4s¹', 3),
+        (26, 'Manganês', 25, '55', 'Sólido', 'Mn', '[Ar]3d⁵4s²', 3),
+        (27, 'Ferro', 26, '56', 'Sólido', 'Fe', '[Ar]3d⁶4s²', 3),
+        (28, 'Cobalto', 27, '59', 'Sólido', 'Co', '[Ar]3d⁷4s²', 3),
+        (29, 'Níquel', 28, '59', 'Sólido', 'Ni', '[Ar]3d⁸4s²', 3),
+        (30, 'Cobre', 29, '64', 'Sólido', 'Cu', '[Ar]3d¹º4s¹', 3),
+        (31, 'Zinco', 30, '66', 'Sólido', 'Zn', '[Ar]3d¹º4s²', 3),
+        (32, 'Gálio', 31, '70', 'Sólido', 'Ga', '[Ar]3d¹º4s²4p¹', 10),
+        (33, 'Germânio', 32, '73', 'Sólido', 'Ge', '[Ar]3d¹º4s²4p²', 7),
+        (34, 'Arsênio', 33, '75', 'Sólido', 'As', '[Ar]3d¹º4s²4p³', 7),
+        (35, 'Selênio', 34, '79', 'Sólido', 'Se', '[Ar]3d¹º4s²4p⁴', 8),
+        (36, 'Bromo', 35, '80', 'Líquido', 'Br', '[Ar]3d¹º4s²4p⁵', 9),
+        (37, 'Criptônio', 36, '84', 'Gasoso', 'Kr', '[Ar]3d¹º4s²4p⁶', 6),
+        (38, 'Rubídio', 37, '86', 'Sólido', 'Rb', '[Kr]5s¹', 1),
+        (39, 'Estrôncio', 38, '88', 'Sólido', 'Sr', '[Kr]5s²', 2),
+        (40, 'Ítrio', 39, '89', 'Sólido', 'Y', '[Kr]4d¹5s²', 3),
+        (41, 'Zírcônio', 40, '91', 'Sólido', 'Zr', '[Kr]4d²5s²', 3),
+        (42, 'Niôbio', 41, '93', 'Sólido', 'Nb', '[Kr]4d⁴5s¹', 3),
+        (43, 'Molibdênio', 42, '96', 'Sólido', 'Mo', '[Kr]4d⁵5s¹', 3),
+        (44, 'Tecnécio', 43, '98', 'Sólido', 'Tc', '[Kr]4d⁵5s²', 3),
+        (45, 'Rutênio', 44, '101', 'Sólido', 'Ru', '[Kr]4d⁷5s¹', 3),
+        (46, 'Ródio', 45, '103', 'Sólido', 'Rh', '[Kr]4d⁸5s¹', 3),
+        (47, 'Paládio', 46, '107', 'Sólido', 'Pd', '[Kr]4d¹º', 3),
+        (48, 'Prata', 47, '108', 'Sólido', 'Ag', '[Kr]4d¹º5s¹', 3),
+        (49, 'Cádmio', 48, '113', 'Sólido', 'Cd', '[Kr]4d¹º5s²', 3),
+        (50, 'Índio', 49, '115', 'Sólido', 'In', '[Kr]4d¹º5s²5p¹', 3)
     ])
 
 cursor.execute('select * from tabelaperiodica.elemento')
