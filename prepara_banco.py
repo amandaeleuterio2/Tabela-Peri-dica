@@ -176,7 +176,32 @@ cursor.executemany(
         (47, 'Paládio', 46, '107', 'Sólido', 'Pd', '[Kr]4d¹º', 3),
         (48, 'Prata', 47, '108', 'Sólido', 'Ag', '[Kr]4d¹º5s¹', 3),
         (49, 'Cádmio', 48, '113', 'Sólido', 'Cd', '[Kr]4d¹º5s²', 3),
-        (50, 'Índio', 49, '115', 'Sólido', 'In', '[Kr]4d¹º5s²5p¹', 3)
+        (50, 'Índio', 49, '115', 'Sólido', 'In', '[Kr]4d¹º5s²5p¹', 3),
+        (51, 'estanho', 50, '119', 'Sólido', 'Sn', '[Kr]4d¹º5s²5p²', 10),
+        (52, 'Antimônio', 51, '122', 'Sólido', 'Sb', '[Kr]4d¹º5s²5p³', 7),
+        (53, 'Telúrio', 52, '128', 'Sólido', 'Te', '[Kr]4d¹º5s²5p⁴', 7),
+        (54, 'Iodo', 53, '127', 'Sólido', 'I', '[Kr]4d¹º5s²5p⁵', 9),
+        (55, 'Xenônio', 54, '131', 'Gasoso', 'Xe', '[Kr]4d¹º5s²5p⁶', 6),
+        (56, 'Césio', 55, '133', 'Sólido', 'Cs', '[Xe]6s¹', 1),
+        (57, 'Bário', 56, '137', 'Sólido', 'Ba', '[Xe]6s²', 2),
+        (58, 'Lantânio', 57, '139', 'Sólido', 'La', '[Xe]5d¹6s²', 4),
+        (59, 'Cério', 58, '140', 'Sólido', 'Ce', '[Xe]4f¹5d¹6s²', 4),
+        (60, 'Praseodímio', 59, '141', 'Sólido', 'Pr', '[Xe]4f³6s²', 4),
+        (61, 'Neodímio', 60, '144', 'Sólido', 'Nd', '[Xe]4f⁴6s²', 4),
+        (62, 'Promécio', 61, '145', 'Sólido', 'Pm', '[Xe]4f⁵6s²', 4),
+        (63, 'Samário', 62, '150', 'Sólido', 'Sm', '[Xe]4f⁶6s²', 4),
+        (64, 'Európio', 63, '152', 'Sólido', 'Eu', '[Xe]4f⁷6s²', 4),
+        (65, 'Gadolínio', 64, '157', 'Sólido', 'Gd', '[Xe]4f⁷5d¹6s²', 4),
+        (66, 'Térbio', 65, '159', 'Sólido', 'Tb', '[Xe]4f⁹6s²', 4),
+        (67, 'Disprósio', 66, '163', 'Sólido', 'Dy', '[Xe]4f¹º6s²', 4),
+        (68, 'Hólmio', 67, '165', 'Sólido', 'Ho', '[Xe]4f¹¹6s²', 4),
+        (69, 'Érbio', 68, '167', 'Sólido', 'Er', '[Xe]4f¹²6s²', 4),
+        (70, 'Túlio', 69, '169', 'Sólido', 'Tm', '[Xe]4f¹³6s²', 4),
+        (71, 'Itérbio', 70, '173', 'Sólido', 'Yb', '[Xe]4f¹⁴6s²', 4),
+        (72, 'Lutécio', 71, '175', 'Sólido', 'Lu', '[Xe]4f¹⁴5d¹6s²', 4),
+        (73, 'Háfnio', 72, '178', 'Sólido', 'Hf', '[Xe]4f¹⁴5d²6s²', 3),
+        (74, 'Tântalo', 73, '181', 'Sólido', 'Ta', '[Xe]4f¹⁴5d³6s²', 3),
+        (75, 'Tungstênio', 74, '184', 'Sólido', 'W', '[Xe]4f¹⁴5d⁴6s²', 3)
     ])
 
 cursor.execute('select * from tabelaperiodica.elemento')
