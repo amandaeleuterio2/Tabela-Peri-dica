@@ -176,7 +176,7 @@ cursor.executemany(
         (47, 'Paládio', 46, '107', 'Sólido', 'Pd', '[Kr]4d¹º', 3),
         (48, 'Prata', 47, '108', 'Sólido', 'Ag', '[Kr]4d¹º5s¹', 3),
         (49, 'Cádmio', 48, '113', 'Sólido', 'Cd', '[Kr]4d¹º5s²', 3),
-        (50, 'Índio', 49, '115', 'Sólido', 'In', '[Kr]4d¹º5s²5p¹', 3),
+        (50, 'Índio', 49, '115', 'Sólido', 'In', '[Kr]4d¹º5s²5p¹', 10),
         (51, 'estanho', 50, '119', 'Sólido', 'Sn', '[Kr]4d¹º5s²5p²', 10),
         (52, 'Antimônio', 51, '122', 'Sólido', 'Sb', '[Kr]4d¹º5s²5p³', 7),
         (53, 'Telúrio', 52, '128', 'Sólido', 'Te', '[Kr]4d¹º5s²5p⁴', 7),
@@ -226,7 +226,26 @@ cursor.executemany(
         (97, 'Cúrio', 96, '247', 'Sólido', 'Cm', '[Rn]5f⁷6d¹7s²', 5),
         (98, 'Berquélio', 97, '247', 'Sólido', 'Bk', '[Rn]5f⁹7s²', 5),
         (99, 'Califórnio', 98, '251', 'Sólido', 'Cf', '[Rn]5f¹º7s²', 5),
-        (100, 'Einstênio', 99, '252', 'Sólido', 'Es', '[Rn]5f¹¹7s²', 5)
+        (100, 'Einstênio', 99, '252', 'Sólido', 'Es', '[Rn]5f¹¹7s²', 5),
+        (101, 'Fêrmio', 100, '257', 'Sólido', 'Fm', '[Rn]5f¹²7s²', 5),
+        (102, 'Mendelévio', 101, '258', 'Sólido', 'Md', '[Rn]5f¹³7s²', 5),
+        (103, 'Nobélio', 102, '259', 'Sólido', 'No', '[Rn]5f¹⁴7s²', 5),
+        (104, 'Laurêncio', 103, '262', 'Sólido', 'Lr', '[Rn]5f¹⁴7s²7p¹', 5),
+        (105, 'Rutherfórdio', 104, '267', 'Sólido', 'Rf', '[Rn]5f¹⁴6d²7s²', 3),
+        (106, 'Dúbnio', 105, '268', 'Sólido', 'Db', '[Rn]5f¹⁴6d³7s²', 3),
+        (107, 'Seabórgio', 106, '269', 'Sólido', 'Sg', '[Rn]5f¹⁴6d⁴7s²', 3),
+        (108, 'Bóhrio', 107, '270', 'Sólido', 'Bh', '[Rn]5f¹⁴6d⁵7s²', 3),
+        (109, 'Hássio', 108, '269', 'Sólido', 'Hs', '[Rn]5f¹⁴6d⁶7s²', 3),
+        (110, 'Meitnério', 109, '278', 'Sólido', 'Mt', '[Rn]5f¹⁴6d⁷7s²', 3),
+        (111, 'Darmstádtio', 110, '281', 'Sólido', 'Ds', '[Rn]5f¹⁴6d⁹7s¹', 3),
+        (112, 'Roentgênio', 111, '280', 'Sólido', 'Rg', '[Rn]5f¹⁴6d¹º7s¹', 3),
+        (113, 'Copernício', 112, '285', 'Líquido', 'Cn', '[Rn]5f¹⁴6d¹º7s²', 3),
+        (114, 'Nihônio', 113, '286', 'Sólido', 'Nh', '[Rn]5f¹⁴6d¹º7s²7p¹', 10),
+        (115, 'Fleróvio', 114, '289', 'Sólido', 'Fl', '[Rn]5f¹⁴6d¹º7s²7p²', 10),
+        (116, 'Moscóvio', 115, '289', 'Sólido', 'Mc', '[Rn]5f¹⁴6d¹º7s²7p³', 10),
+        (117, 'Livermório', 116, '293', 'Gasoso', 'Lv', '[Rn]5f¹⁴6d¹º7s²7p⁴', 10),
+        (118, 'Tennesso', 117, '294', 'Sólido', 'Ts', '[Rn]5f¹⁴6d¹º7s²7p⁵', 9),
+        (119, 'Oganessônio', 118, '294', 'Sólido', 'Og', '[Rn]5f¹⁴6d¹º7s²7p⁶', 6)
     ])
 
 cursor.execute('select * from tabelaperiodica.elemento')
