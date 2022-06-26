@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, flash                 
 import os
 
-from dao import ElementoDao, ClasseDao, CuriosidadesDao, NivelDao, UsuarioDao, DesafioDao
+from dao import ElementoDao, ClasseDao, CuriosidadesDao, NivelDao, PerguntasDao, UsuarioDao, DesafioDao
 from flask_mysqldb import MySQL
 
 from models import Usuario, Tipo_usuario, Elemento, Classe, Curiosidades, Perguntas, Desafio, Nivel
@@ -22,6 +22,7 @@ classe_dao = ClasseDao(db)
 curiosidades_dao = CuriosidadesDao(db)
 desafio_dao = DesafioDao(db)
 nivel_dao = NivelDao(db)
+perguntas_dao = PerguntasDao(db)
 
 @app.route('/')
 def index():
@@ -64,6 +65,13 @@ def lista_desafios():
     lista = desafio_dao.listar()
     return render_template('lista_desafios.html', titulo="Desafios Cadastrados", desafios = lista)
 
+@app.route('/lista_perguntas')
+def lista_perguntas():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=lista_perguntas')
+    lista = perguntas_dao.listar()
+    return render_template('lista_perguntas.html', titulo="Perguntas Cadastradas", perguntas = lista)
+
 @app.route('/novo_elemento')
 def novo_elemento():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -90,6 +98,13 @@ def novo_desafio():
         return redirect('/login?proxima=novo_desafio')
     lista = nivel_dao.listar()
     return render_template('novo_desafio.html', titulo="Cadastrando novo desafio", niveis=lista)
+
+@app.route('/nova_pergunta')
+def nova_pergunta():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=nova_pergunta')
+    lista = desafio_dao.listar()
+    return render_template('nova_pergunta.html', titulo="Cadastrando nova pergunta", desafios=lista)
 
 @app.route('/criar_elemento', methods = ['POST',])
 def criar():
@@ -133,6 +148,19 @@ def criar_desafio():
     #lista.append(pet)
     desafio_dao.salvar(desafio)
     return redirect('/lista_desafios')
+
+@app.route('/criar_pergunta', methods = ['POST',])
+def criar_pergunta():
+    nome_pergunta = request.form['nome_pergunta']
+    descricao= request.form['descricao']
+    resposta= request.form['resposta']
+    desafio_id= request.form['desafio_id']
+
+    pergunta = Perguntas(nome_pergunta, descricao, resposta, desafio_id)
+
+    #lista.append(pet)
+    perguntas_dao.salvar(pergunta)
+    return redirect('/lista_perguntas')
 
 @app.route('/login')
 def login():
@@ -198,6 +226,23 @@ def editar_curiosidades(id):
     lista = elemento_dao.listar()
     return render_template('editar_curiosidades.html', titulo="Editando Dados das Curiosidades", curiosidade=curiosidade, elementos=lista)
 
+@app.route('/editar_desafio/<int:id>')
+def editar_desafio(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('editar_desafio')))
+    desafios = desafio_dao.busca_por_id(id)
+    lista = nivel_dao.listar()
+    return render_template('editar_desafio.html',titulo="Editando Dados dos Desafios", desafio = desafios, niveis = lista)
+
+@app.route('/editar_pergunta/<int:id>')
+def editar_pergunta(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login', proxima=url_for('editar_pergunta')))
+    perguntas = perguntas_dao.busca_por_id(id)
+    lista = desafio_dao.listar()
+    return render_template('editar_pergunta.html',titulo="Editando Dados das Perguntas", pergunta = perguntas, desafios = lista)
+
+
 @app.route('/atualizar_elemento', methods = ['POST',])
 def atualizar_elemento():
     nome_elemento = request.form['nome_elemento']
@@ -233,6 +278,28 @@ def atualizar_curiosidades():
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
 
+@app.route('/atualizar_desafio', methods = ['POST',])
+def atualizar_desafio():
+    quantidade_perguntas = request.form['quantidade_perguntas']
+    nivel_id= request.form['nivel_id']
+    id = request.form['id']
+
+    desafio = Desafio(quantidade_perguntas, nivel_id, None, id)
+    desafio_dao.salvar(desafio)
+    return redirect('/lista_desafios')
+
+@app.route('/atualizar_pergunta', methods = ['POST',])
+def atualizar_pergunta():
+    nome_pergunta = request.form['nome_pergunta']
+    descricao = request.form['descricao']
+    resposta = request.form['resposta']
+    desafio_id = request.form['desafio_id']
+    id = request.form['id']
+
+    pergunta = Perguntas(nome_pergunta, descricao, resposta, desafio_id, id)
+    perguntas_dao.salvar(pergunta)
+    return redirect('/lista_perguntas')
+
 @app.route('/deletar/<int:id>')
 def deletar(id):
     elemento_dao.deletar(id)
@@ -252,6 +319,11 @@ def deletar_curiosidades(id):
 def deletar_desafio(id):
     desafio_dao.deletar(id)
     return redirect('/lista_desafios')
+
+@app.route('/deletar_pergunta/<int:id>')
+def deletar_pergunta(id):
+    perguntas_dao.deletar(id)
+    return redirect('/lista_perguntas')
     
 @app.route('/uploads/<nome_arquivo>')
 def upload_file(nome_arquivo):

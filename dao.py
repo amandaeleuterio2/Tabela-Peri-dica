@@ -30,9 +30,15 @@ SQL_DELETA_DESAFIO = 'delete from desafio where id_desafio = %s'
 SQL_CRIA_DESAFIO = 'INSERT into desafio (quantidade_perguntas, nivel) values (%s, %s)'
 SQL_ATUALIZA_DESAFIO = 'UPDATE desafio SET quantidade_perguntas = %s, nivel = %s where id_desafio = %s'
 SQL_BUSCA_DESAFIO = 'SELECT D.id_desafio, D.quantidade_perguntas, D.nivel, N.nome_nivel as nivel from desafio D inner join nivel N on D.nivel = N.id_nivel'
-SQL_DESAFIO_POR_ID = 'SELECT D.id_desafio, D.nivel, N.nome_nivel as nivel from desafio D inner join nivel N on D.nivel = N.id_nivel where D.id_desafio = %s'
+SQL_DESAFIO_POR_ID = 'SELECT D.id_desafio,  D.quantidade_perguntas, D.nivel, N.nome_nivel as nivel from desafio D inner join nivel N on D.nivel = N.id_nivel where D.id_desafio = %s'
 
 SQL_BUSCA_NIVEL = 'SELECT id_nivel, nome_nivel from nivel'
+
+SQL_DELETA_PERGUNTAS = 'delete from perguntas where id_perguntas = %s'
+SQL_CRIA_PERGUNTAS = 'INSERT into perguntas (nome_pergunta, descricao, resposta, desafio) values (%s, %s, %s, %s)'
+SQL_ATUALIZA_PERGUNTAS = 'UPDATE perguntas SET nome_pergunta = %s, descricao = %s, resposta = %s, desafio = %s where id_perguntas = %s'
+SQL_BUSCA_PERGUNTAS = 'SELECT P.id_perguntas, P.nome_pergunta, P.descricao, P.resposta, P.desafio from perguntas P;'
+SQL_PERGUNTAS_POR_ID = 'SELECT P.id_perguntas, P.nome_pergunta, P.descricao, P.resposta, P.desafio from perguntas P where P.id_perguntas = %s'
 
 class ElementoDao:
     def __init__(self, db):
@@ -233,3 +239,41 @@ def traduz_desafios(desafios):
     def cria_desafio_com_tupla(tupla):
         return Desafio(tupla[1], tupla[2], tupla[3], id=tupla[0])
     return list(map(cria_desafio_com_tupla, desafios))
+
+class PerguntasDao:
+    def __init__(self, db):
+        self.__db = db
+
+    def salvar(self, pergunta):
+        cursor = self.__db.connection.cursor()
+
+        if (pergunta._id):
+            cursor.execute(SQL_ATUALIZA_PERGUNTAS, (pergunta._nome_pergunta, pergunta._descricao, pergunta._resposta, pergunta._desafio_id, pergunta._id))
+        else:
+            cursor.execute(SQL_CRIA_PERGUNTAS, (pergunta._nome_pergunta, pergunta._descricao, pergunta._resposta, pergunta._desafio_id))
+            cursor._id = cursor.lastrowid
+
+        self.__db.connection.commit()
+        return pergunta
+
+    def listar(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_PERGUNTAS)
+        perguntas = traduz_perguntas(cursor.fetchall())
+        return perguntas
+
+    def busca_por_id(self, id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_PERGUNTAS_POR_ID, (id,))
+        tupla = cursor.fetchone()
+        return Perguntas(tupla[1], tupla[2], tupla[3], tupla[4], id=tupla[0])
+
+    def deletar(self, id):
+        self.__db.connection.cursor().execute(SQL_DELETA_PERGUNTAS, (id,))
+        self.__db.connection.commit()
+
+
+def traduz_perguntas(perguntas):
+    def cria_pergunta_com_tupla(tupla):
+        return Perguntas(tupla[1], tupla[2], tupla[3], tupla[4], id=tupla[0])
+    return list(map(cria_pergunta_com_tupla, perguntas))

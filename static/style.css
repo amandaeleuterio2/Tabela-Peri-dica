@@ -80,6 +80,10 @@ ul .intro_li a {
   box-shadow: none;
   color: white;
 }
+.table{
+  display: flex;
+  justify-content: center;
+}
 
 .tabela,
 .tabela thead {
