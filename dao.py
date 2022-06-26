@@ -37,8 +37,8 @@ SQL_BUSCA_NIVEL = 'SELECT id_nivel, nome_nivel from nivel'
 SQL_DELETA_PERGUNTAS = 'delete from perguntas where id_perguntas = %s'
 SQL_CRIA_PERGUNTAS = 'INSERT into perguntas (nome_pergunta, descricao, resposta, desafio) values (%s, %s, %s, %s)'
 SQL_ATUALIZA_PERGUNTAS = 'UPDATE perguntas SET nome_pergunta = %s, descricao = %s, resposta = %s, desafio = %s where id_perguntas = %s'
-SQL_BUSCA_PERGUNTAS = 'SELECT P.id_perguntas, P.nome_pergunta, P.descricao, P.resposta, P.desafio from perguntas P;'
-SQL_PERGUNTAS_POR_ID = 'SELECT P.id_perguntas, P.nome_pergunta, P.descricao, P.resposta, P.desafio from perguntas P where P.id_perguntas = %s'
+SQL_BUSCA_PERGUNTAS = 'SELECT id_perguntas, nome_pergunta, descricao, resposta,desafio from perguntas'
+SQL_PERGUNTAS_POR_ID = 'SELECT id_perguntas, nome_pergunta, descricao, resposta,desafio from perguntas where id_perguntas = %s'
 
 class ElementoDao:
     def __init__(self, db):
