@@ -31,6 +31,21 @@ def index():
     lista = elemento_dao.listar()
     return render_template('index.html', elementos=lista)
 
+@app.route('/adm')
+def adm():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    lista = elemento_dao.listar()
+    return render_template('index1.html', elementos=lista)
+
+@app.route('/curiosidades')
+def curiosidades():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    lista = curiosidades_dao.listar()
+    lista2 = elemento_dao.listar()
+    return render_template('curiosidades.html', curiosidades=lista, elementos = lista2)
+
 @app.route('/roteiro_estudo')
 def roteiro_estudo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
