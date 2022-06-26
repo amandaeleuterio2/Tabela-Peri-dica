@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, flash                 
 import os
 
-from dao import ElementoDao, ClasseDao, CuriosidadesDao, UsuarioDao
+from dao import ElementoDao, ClasseDao, CuriosidadesDao, NivelDao, UsuarioDao, DesafioDao
 from flask_mysqldb import MySQL
 
 from models import Usuario, Tipo_usuario, Elemento, Classe, Curiosidades, Perguntas, Desafio, Nivel
@@ -20,6 +20,8 @@ elemento_dao = ElementoDao(db)
 usuario_dao = UsuarioDao(db)
 classe_dao = ClasseDao(db)
 curiosidades_dao = CuriosidadesDao(db)
+desafio_dao = DesafioDao(db)
+nivel_dao = NivelDao(db)
 
 @app.route('/')
 def index():
@@ -55,6 +57,13 @@ def lista_curiosidades():
     lista = curiosidades_dao.listar()
     return render_template('lista_curiosidades.html', titulo="Curiosidades Cadastradas", curiosidades=lista)
 
+@app.route('/lista_desafios')
+def lista_desafios():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=lista_desafios')
+    lista = desafio_dao.listar()
+    return render_template('lista_desafios.html', titulo="Desafios Cadastrados", desafios = lista)
+
 @app.route('/novo_elemento')
 def novo_elemento():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
@@ -74,6 +83,13 @@ def nova_curiosidade():
         return redirect('/login?proxima=nova_curiosidade')
     lista = elemento_dao.listar()
     return render_template('nova_curiosidade.html', titulo="Cadastrando nova curiosidade", elementos = lista)
+
+@app.route('/novo_desafio')
+def novo_desafio():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=novo_desafio')
+    lista = nivel_dao.listar()
+    return render_template('novo_desafio.html', titulo="Cadastrando novo desafio", niveis=lista)
 
 @app.route('/criar_elemento', methods = ['POST',])
 def criar():
@@ -107,6 +123,16 @@ def criarcuriosidades():
     curiosidades = Curiosidades(tipo, descricao, elemento_id, None)
     curiosidades_dao.salvar(curiosidades)
     return redirect('/lista_curiosidades')
+
+@app.route('/criar_desafio', methods = ['POST',])
+def criar_desafio():
+    quantidade_perguntas = request.form['quantidade_perguntas']
+    nivel_id = request.form['nivel_id']
+    desafio = Desafio(quantidade_perguntas, nivel_id, None)
+
+    #lista.append(pet)
+    desafio_dao.salvar(desafio)
+    return redirect('/lista_desafios')
 
 @app.route('/login')
 def login():
@@ -222,6 +248,11 @@ def deletar_curiosidades(id):
     curiosidades_dao.deletar(id)
     return redirect('/lista_curiosidades')
 
+@app.route('/deletar_desafio/<int:id>')
+def deletar_desafio(id):
+    desafio_dao.deletar(id)
+    return redirect('/lista_desafios')
+    
 @app.route('/uploads/<nome_arquivo>')
 def upload_file(nome_arquivo):
     return send_from_directory(app.config['UPLOAD_PATH'],nome_arquivo)
