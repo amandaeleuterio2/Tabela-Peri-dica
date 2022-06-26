@@ -48,7 +48,6 @@ body {
   /* padding: 0.2rem 2%; */
   background: var(--bg-preto);
   overflow: overlay;
-
 }
 
 ul .intro_li a {
@@ -80,11 +79,37 @@ ul .intro_li a {
   box-shadow: none;
   color: white;
 }
-.table{
+.table {
   display: flex;
   justify-content: center;
 }
+.tabela_curiosidade {
+  display: flex;
+  justify-content: center;
+  margin-top: 8%;
+}
 
+#grid-container-curiosidade {
+  display: grid;
+  grid-template-columns: repeat(2, 5%);
+  grid-gap: 0.25em;
+  justify-content: space-around;
+  align-items: end;
+  justify-items: center;
+}
+section.sectioncuriosidade{
+  height: 10em;
+  width: 10em;
+  background: var(--bg-preto);
+  border: 0.125rem solid;
+  border-radius: 0.25rem;
+  line-height: 1.25;
+  margin-bottom: 0.5em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .tabela,
 .tabela thead {
   margin-left: 2%;
@@ -266,7 +291,6 @@ li:before {
   padding: 0.2rem;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
-
 }
 
 .cabecalho-imagem {
@@ -311,7 +335,6 @@ li:before {
 
     body {
       font-size: 0.65em;
-      
     }
 
     /* GRID CONTAINER STYLES */
@@ -520,8 +543,11 @@ textarea {
   color: white;
 }
 
-
 .page-header {
-  border-top: 1px solid #2B3235;
+  border-top: 1px solid #2b3235;
   /* /* border-top: 0.2px solid #FFF2E7; */
+}
+
+.curiosidade {
+  margin: 0;
 }
