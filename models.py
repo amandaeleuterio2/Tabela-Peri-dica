@@ -45,11 +45,12 @@ class Perguntas():
         self._desafio_id=desafio_id
 
 class Desafio():
-    def __init__(self, quantidade_perguntas, nivel_id, id=None):
+    def __init__(self, quantidade_perguntas, nivel_id, nivel, id=None):
         self._id=id
-        self._quantidade_perguntas=quantidade_perguntas
+        self._quantidade_perguntas = quantidade_perguntas
         self._nivel_id=nivel_id
-
+        self._nivel = nivel
+        
 class Nivel():
     def __init__(self, nome_nivel, id=None):
         self._id=id

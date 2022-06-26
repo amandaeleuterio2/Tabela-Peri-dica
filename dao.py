@@ -26,6 +26,13 @@ SQL_BUSCA_CURIOSIDADE = 'SELECT CS.id_curiosidade, CS.tipo, CS.descricao, CS.ele
 SQL_DELETA_CURIOSIDADE = 'delete from curiosidade where id_curiosidade = %s'
 SQL_CURIOSIDADE_POR_ID = 'SELECT CS.id_curiosidade, CS.tipo, CS.descricao, CS.elemento, E.nome_elemento as elemento from curiosidade CS inner join elemento E on CS.elemento = E.id_elemento where CS.id_curiosidade=%s'
 
+SQL_DELETA_DESAFIO = 'delete from desafio where id_desafio = %s'
+SQL_CRIA_DESAFIO = 'INSERT into desafio (quantidade_perguntas, nivel) values (%s, %s)'
+SQL_ATUALIZA_DESAFIO = 'UPDATE desafio SET quantidade_perguntas = %s, nivel = %s where id_desafio = %s'
+SQL_BUSCA_DESAFIO = 'SELECT D.id_desafio, D.quantidade_perguntas, D.nivel, N.nome_nivel as nivel from desafio D inner join nivel N on D.nivel = N.id_nivel'
+SQL_DESAFIO_POR_ID = 'SELECT D.id_desafio, D.nivel, N.nome_nivel as nivel from desafio D inner join nivel N on D.nivel = N.id_nivel where D.id_desafio = %s'
+
+SQL_BUSCA_NIVEL = 'SELECT id_nivel, nome_nivel from nivel'
 
 class ElementoDao:
     def __init__(self, db):
@@ -173,3 +180,56 @@ class UsuarioDao:
 
 def traduz_usuario(tupla):
     return Usuario(tupla[0], tupla[1], tupla[2],tupla[3], tupla[4])
+
+class NivelDao:
+    def __init__(self, db):
+        self.__db = db
+
+    def listar(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_NIVEL)
+        niveis = traduz_niveis(cursor.fetchall())
+        return niveis  
+
+def traduz_niveis(niveis):
+    def cria_nivel_com_tupla(tupla):
+        return Nivel(tupla[1], id=tupla[0])
+    return list(map(cria_nivel_com_tupla, niveis)) 
+
+class DesafioDao:
+    def __init__(self, db):
+        self.__db = db
+
+    def salvar(self, desafio):
+        cursor = self.__db.connection.cursor()
+
+        if (desafio._id):
+            cursor.execute(SQL_ATUALIZA_DESAFIO, (desafio._quantidade_perguntas, desafio._nivel_id, desafio._id))
+        else:
+            cursor.execute(SQL_CRIA_DESAFIO, (desafio._quantidade_perguntas, desafio._nivel_id))
+            cursor._id = cursor.lastrowid
+
+        self.__db.connection.commit()
+        return desafio
+
+    def listar(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_DESAFIO)
+        desafios = traduz_desafios(cursor.fetchall())
+        return desafios
+
+    def busca_por_id(self, id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_DESAFIO_POR_ID, (id,))
+        tupla = cursor.fetchone()
+        return Desafio(tupla[1], tupla[2], tupla[3], id=tupla[0])
+
+    def deletar(self, id):
+        self.__db.connection.cursor().execute(SQL_DELETA_DESAFIO, (id,))
+        self.__db.connection.commit()
+
+
+def traduz_desafios(desafios):
+    def cria_desafio_com_tupla(tupla):
+        return Desafio(tupla[1], tupla[2], tupla[3], id=tupla[0])
+    return list(map(cria_desafio_com_tupla, desafios))

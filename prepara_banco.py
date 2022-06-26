@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `tabelaperiodica`.`desafio` (
   `id_desafio` INT NOT NULL AUTO_INCREMENT,
-  `quanidade_perguntas` VARCHAR(45) NOT NULL,
+  `quantidade_perguntas` VARCHAR(45) NOT NULL,
   `nivel` INT NOT NULL,
   PRIMARY KEY (`id_desafio`),
   INDEX `fk_desafio_nivel1_idx` (`nivel` ASC) VISIBLE,
