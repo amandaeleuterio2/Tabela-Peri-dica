@@ -342,8 +342,8 @@ li:before {
   @supports (display: grid) {
     /* GLOBAL STYLES */
 
-    body {
-      font-size: 0.65em;
+    section p {
+      font-size: 0.65rem;
     }
 
     /* GRID CONTAINER STYLES */
@@ -412,12 +412,7 @@ li:before {
   }
 }
 
-@media only screen and (min-width: 9000.5em) {
-  /* GLOBAL STYLES */
-  body {
-    font-size: 0.75em;
-  }
-}
+
 
 .linha {
   color: white;
@@ -565,13 +560,43 @@ textarea {
   align-items: flex-end;
 }
 
-.card{
+.card {
   background-image: linear-gradient(to right, #32b08d, #78e4ff);
-  color:#2b3235;
+  color: #2b3235;
   font-size: 1.2rem;
 }
 
-.btn{
+.btn {
   margin: 0;
   padding: 0;
+}
+
+.btn_resposta{
+  /* height: 76px;
+  width: 200px; */
+  align-items: center;
+  background-image: linear-gradient(rgba(20, 163, 163, 0.267), rgba(179, 52, 52, 0.133));
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+
+}
+
+main.pagedesafios{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  padding: 2%;
+  gap: 0.5rem;
+  font-size: 1.0rem;
+  
+}
+
+main.pagedesafios h2{
+  color:#59b99e;
+  font-size: 1.4rem;
+}
+
+main.pagedesafios h3{
+  font-size: 1.2rem;
 }

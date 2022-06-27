@@ -4,6 +4,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/static/style.css" rel="stylesheet" />
+<main class="pagedesafios">
 
 <div class="niveis">
   <p>
@@ -47,35 +48,146 @@
       />
     </button>
   </p>
+
   <div class="collapse" id="collapseExampleFacil">
     <div class="card card-body">
-      {% if nivel._id_nivel == 1 %}
-        {% if desafio._nivel == nivel._id_nivel %}
-            <p>aaa{{desafio._id}}</p>
-            <p>hhh{{desafio._quantidade_perguntas}}</p>
-        {% endif %}
-      {% endif %}
+      {% for desafio in desafios %} {% for nivel in niveis %} {% if nivel._id ==
+      1 %} {% if desafio._nivel_id == nivel._id %}
+      <h3><a href="#desafio1">Desafio: {{desafio._id}}</a></h3>
+      <p>Quantidade de Perguntas: {{desafio._quantidade_perguntas}}</p>
+      <p>Dificuldade: {{nivel._nome_nivel}}</p>
+      {% endif %} {% endif %} {% endfor %} {% endfor %}
     </div>
   </div>
+
   <div class="collapse" id="collapseExampleMedio">
     <div class="card card-body">
-        {% if nivel._id_nivel == 2 %}
-        {% if desafio._nivel == nivel._id_nivel %}
-            <p>aaa{{desafio._id}}</p>
-            <p>hhh{{desafio._quantidade_perguntas}}</p>
-        {% endif %}
-      {% endif %}
+      {% for desafio in desafios %} {% for nivel in niveis %} {% if nivel._id ==
+      2 %} {% if desafio._nivel_id == nivel._id %}
+      <h3><a href="#desafio2">Desafio: {{desafio._id}}</a></h3>
+      <p>Quantidade de Perguntas: {{desafio._quantidade_perguntas}}</p>
+      <p>Dificuldade: {{nivel._nome_nivel}}</p>
+      {% endif %} {% endif %} {% endfor %} {% endfor %}
     </div>
   </div>
+  
   <div class="collapse" id="collapseExampleDificil">
     <div class="card card-body">
-        {% if nivel._id_nivel == 3 %}
-        {% if desafio._nivel == nivel._id_nivel %}
-            <p>aaa{{desafio._id}}</p>
-            <p>hhh{{desafio._quantidade_perguntas}}</p>
-        {% endif %}
-      {% endif %}
+      {% for desafio in desafios %} {% for nivel in niveis %} {% if nivel._id ==
+      3 %} {% if desafio._nivel_id == nivel._id %}
+      <h3><a href="#desafio3">Desafio: {{desafio._id}}</a></h3>
+      <p>Quantidade de Perguntas: {{desafio._quantidade_perguntas}}</p>
+      <p>Dificuldade: {{nivel._nome_nivel}}</p>
+      {% endif %} {% endif %} {% endfor %} {% endfor %}
     </div>
   </div>
 </div>
+
+<div id="desafio1">
+  <div>
+    {% for desafio in desafios %} 
+      {% for nivel in niveis %} 
+        {% if nivel._id == 1 %} 
+          {% if desafio._nivel_id == nivel._id %}
+            {% for pergunta in perguntas %}
+              {% if pergunta._desafio_id == desafio._id %}
+                {% if pergunta._id == pergunta._id %}
+                  <h2>Desafio {{desafio._id}}:</h2>
+                  <p>Pergunta {{pergunta[perguntas]}}:</p>
+                  <h3>{{pergunta._nome_pergunta}}</h3>
+                  <p>{{pergunta._descricao}}</p>
+                  <button
+                  class="btn_resposta"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseRespostaFacil"
+                  aria-expanded="false"
+                  aria-controls="collapseRespostaFacil">Resposta
+                  <div class="collapse" id="collapseRespostaFacil">
+                    <div class="card cardRespostaFacil">
+                      {% if pergunta._desafio_id == desafio._id %}
+                      {% if pergunta._id == pergunta._id %}
+                      <p>Resposta: {{pergunta._resposta}}</p>
+                      {% endif %}
+                      {% endif %}
+                    </div>
+                  </div>
+                  </button>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+<div class="desafio2">
+  {% for desafio in desafios %} 
+  {% for nivel in niveis %} 
+    {% if nivel._id == 2 %} 
+      {% if desafio._nivel_id == nivel._id %}
+        {% for pergunta in perguntas %}
+          {% if pergunta._desafio_id == desafio._id %}
+            {% if pergunta._id == pergunta._id %}
+              <h2>Desafio {{desafio._id}}:</h2>
+              <p>Pergunta {{pergunta[perguntas]}}:</p>
+              <h3>{{pergunta._nome_pergunta}}</h3>
+              <p>{{pergunta._descricao}}</p>
+              <button
+              class="btn_resposta"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseRespostaMedio"
+              aria-expanded="false"
+              aria-controls="collapseRespostaMedio">Resposta
+              <div class="collapse" id="collapseRespostaMedio">
+                <div class="card cardRespostaMedio">
+                  <p>Resposta: {{pergunta._resposta}}</p>
+                </div>
+              </div>
+              </button>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+  </div>
+<div class="desafio3">
+    {% for desafio in desafios %} 
+      {% for nivel in niveis %} 
+        {% if nivel._id == 3 %} 
+          {% if desafio._nivel_id == nivel._id %}
+            {% for pergunta in perguntas %}
+              {% if pergunta._desafio_id == desafio._id %}
+                {% if pergunta._id == pergunta._id %}
+                  <h2>Desafio {{desafio._id}}:</h2>
+                  <p>Pergunta {{pergunta[perguntas]}}:</p>
+                  <h3>{{pergunta._nome_pergunta}}</h3>
+                  <p>{{pergunta._descricao}}</p>
+                  <button
+                  class="btn_resposta"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseRespostaDificil"
+                  aria-expanded="false"
+                  aria-controls="collapseRespostaDificil">Resposta
+                  <div class="collapse" id="collapseRespostaDificil">
+                    <div class="card cardRespostaDificil">
+                      <p>Resposta: {{pergunta._resposta}}</p>
+                    </div>
+                  </div>
+                  </button>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
+</main>
 {% endblock %}
