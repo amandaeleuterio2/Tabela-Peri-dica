@@ -46,6 +46,16 @@ def curiosidades():
     lista2 = elemento_dao.listar()
     return render_template('curiosidades.html', curiosidades=lista, elementos = lista2)
 
+@app.route('/desafio')
+def desafio():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login')
+    lista = perguntas_dao.listar()
+    lista2 = desafio_dao.listar()
+    lista3 = nivel_dao.listar()
+    return render_template('desafio.html', perguntas=lista, desafio = lista2, nivel=lista3)
+
+
 @app.route('/roteiro_estudo')
 def roteiro_estudo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
