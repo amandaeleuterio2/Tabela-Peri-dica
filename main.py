@@ -53,7 +53,7 @@ def desafio():
     lista = perguntas_dao.listar()
     lista2 = desafio_dao.listar()
     lista3 = nivel_dao.listar()
-    return render_template('desafio.html', perguntas=lista, desafio = lista2, nivel=lista3)
+    return render_template('desafio.html', perguntas=lista, desafios = lista2, niveis=lista3)
 
 
 @app.route('/roteiro_estudo')
