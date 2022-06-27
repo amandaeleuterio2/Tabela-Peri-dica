@@ -329,14 +329,6 @@ li:before {
   border-radius: none;
 }
 
-.cabecalho:hover {
-  transition: 0.2s;
-  transform: scale(1.5);
-  cursor: pointer;
-  z-index: 2;
-  color-adjust: inherit;
-}
-
 /* @media only screen and (min-width: 92.5em) { */
 @media only screen and (min-width: 45.5rem) {
   @supports (display: grid) {
