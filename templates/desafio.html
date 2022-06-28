@@ -1,15 +1,16 @@
 {% extends "template1.html" %} {% block conteudo %}
 <!-- CSS only -->
 <link href="/static/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/static/bootstrap.min.css.map">
+<!-- CSS only -->
 
-<!-- Custom styles for this template -->
 <link href="/static/style.css" rel="stylesheet" />
 <main class="pagedesafios">
 
 <div class="niveis">
   <p>
     <button
-      class="btn btn-primary"
+      class="btn_desafio"
       type="button"
       data-toggle="collapse"
       data-target="#collapseExampleFacil"
@@ -18,11 +19,11 @@
     >
       <img
         src="/static/imagens/easy.PNG"
-        alt="Imagem representando o nível fácil."
+        alt="Imagem representando o nível fácil." align="middle"
       />
     </button>
     <button
-      class="btn btn-primary"
+      class="btn_desafio"
       type="button"
       data-toggle="collapse"
       data-target="#collapseExampleMedio"
@@ -31,11 +32,11 @@
     >
       <img
         src="/static/imagens/medium.PNG"
-        alt="Imagem representando o nível médio."
+        alt="Imagem representando o nível médio." align="middle"
       />
     </button>
     <button
-      class="btn btn-primary"
+      class="btn_desafio"
       type="button"
       data-toggle="collapse"
       data-target="#collapseExampleDificil"
@@ -44,7 +45,7 @@
     >
       <img
         src="/static/imagens/hard.PNG"
-        alt="Imagem representando o nível difícil."
+        alt="Imagem representando o nível difícil." align="middle"
       />
     </button>
   </p>

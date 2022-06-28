@@ -27,8 +27,8 @@
             {% for classe in classes %}
                 <tr>
                     <td>{{ classe._nome_classe }}</td>
-                    <td><a class="btn btn-secondary" href="{{url_for('editar_classe', id=classe._id)}}">Editar</a> </td>
-                    <td><a class="btn btn-danger" href="{{url_for('deletar_classes', id=classe._id)}}">Deletar</a></td>
+                    <td><a class="btn_desafio btn-secondary" href="{{url_for('editar_classe', id=classe._id)}}">Editar</a> </td>
+                    <td><a class="btn_desafio btn-danger" href="{{url_for('deletar_classes', id=classe._id)}}">Deletar</a></td>
                 </tr>
             {% endfor %}
             </tbody>
