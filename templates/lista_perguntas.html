@@ -33,8 +33,8 @@
                     <td>{{ pergunta._descricao }}</td>
                     <td>{{ pergunta._resposta }}</td>
                     <td>{{ pergunta._desafio_id }}</td>
-                    <td><a class="btn btn-secondary" href="{{url_for('editar_pergunta', id=pergunta._id)}}">Editar</a> </td>
-                    <td><a class="btn btn-danger" href="{{url_for('deletar_pergunta', id=pergunta._id)}}">Deletar</a> </td>
+                    <td><a class="btn_desafio btn-secondary" href="{{url_for('editar_pergunta', id=pergunta._id)}}">Editar</a> </td>
+                    <td><a class="btn_desafio btn-danger" href="{{url_for('deletar_pergunta', id=pergunta._id)}}">Deletar</a> </td>
                 </tr>
             {% endfor %}
             </tbody>

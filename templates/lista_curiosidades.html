@@ -31,8 +31,8 @@
                     <td>{{ curiosidade._tipo }}</td>
                     <td>{{ curiosidade._descricao }}</td>
                     <td>{{ curiosidade._nome_elemento }}</td>
-                    <td><a class="btn btn-secondary" href="{{url_for('editar_curiosidades', id=curiosidade._id)}}">Editar</a> </td>
-                    <td><a class="btn btn-danger" href="{{url_for('deletar_curiosidades', id=curiosidade._id)}}">Deletar</a> </td>
+                    <td><a class="btn_desafio btn-secondary" href="{{url_for('editar_curiosidades', id=curiosidade._id)}}">Editar</a> </td>
+                    <td><a class="btn_desafio btn-danger" href="{{url_for('deletar_curiosidades', id=curiosidade._id)}}">Deletar</a> </td>
                 </tr>
             {% endfor %}
             </tbody>
